@@ -14,6 +14,13 @@
   "repository": "https://github.com/recruit-tech/recoil-sync-next.git",
   "license": "MIT",
   "packageManager": "yarn@1.22.19",
+  "scripts": {
+    "clean": "rm -Rf dist",
+    "clean-build": "run-s clean build",
+    "build": "run-s -c build:*",
+    "build:cjs": "tsc -p tsconfig.json",
+    "build:esm": "tsc -p tsconfig.esm.json"
+  },
   "devDependencies": {
     "@types/node": "^18.0.3",
     "npm-run-all": "^4.1.5",

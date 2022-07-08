@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "strict": true,
+    "lib": ["dom"],
+    "types": ["node", "jest"],
+    "jsx": "react-jsx",
+    "outDir": "dist/cjs"
+  },
+  "include": ["src"],
+  "exclude": ["dist", "node_modules"]
+}
