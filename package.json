@@ -26,7 +26,11 @@
     "lint-fix": "run-s -c lint-fix:*",
     "lint-fix:eslint": "eslint src --fix",
     "lint-fix:prettier": "prettier \"src/**/*.{ts,tsx}\" --write",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "simple-git-hooks"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "yarn run lint:eslint && yarn run test"
   },
   "peerDependencies": {
     "@recoiljs/refine": "^0.1.0",
