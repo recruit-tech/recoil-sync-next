@@ -15,11 +15,12 @@
   "license": "MIT",
   "packageManager": "yarn@1.22.19",
   "scripts": {
-    "clean": "rm -Rf dist",
+    "clean": "rm -Rf dist coverage",
     "clean-build": "run-s clean build",
     "build": "run-s -c build:*",
     "build:cjs": "tsc -p tsconfig.json",
-    "build:esm": "tsc -p tsconfig.esm.json"
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "test": "jest"
   },
   "peerDependencies": {
     "@recoiljs/refine": "^0.1.0",
