@@ -1,0 +1,49 @@
+{
+  "env": {
+    "es6": true,
+    "node": true,
+    "commonjs": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    // モジュール形式のソースコードを用います
+    "sourceType": "module",
+    // JS のバージョンは最新とします
+    "ecmaVersion": "latest"
+  },
+  "plugins": ["@typescript-eslint", "import"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "rules": {
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "parent",
+          "sibling",
+          "index",
+          "object",
+          "type"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "@/**",
+            "group": "parent",
+            "position": "before"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["builtin"],
+        "alphabetize": {
+          "order": "asc"
+        },
+        "newlines-between": "always"
+      }
+    ]
+  }
+}
