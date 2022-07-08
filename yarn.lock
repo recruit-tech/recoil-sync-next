@@ -160,6 +160,11 @@
   resolved "https://registry.yarnpkg.com/@types/scheduler/-/scheduler-0.16.2.tgz#1a62f89525723dde24ba1b01b092bf5df8ad4d39"
   integrity sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==
 
+"@types/transit-js@^0.8.0":
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/@types/transit-js/-/transit-js-0.8.0.tgz#b2f3ca843f7d9528dd193d16ba08b378bd591c5b"
+  integrity sha512-RqdMsrtA1L7PoJCH7U7AiPbOeNS6zdEQv+rJe91CEw/T1ER5oiDGrdizlEjXA4EDLGDYUqVYdkdW6pwBk0cwsA==
+
 acorn-walk@^8.1.1:
   version "8.2.0"
   resolved "https://registry.yarnpkg.com/acorn-walk/-/acorn-walk-8.2.0.tgz#741210f2e2426454508853a2f44d0ab83b7f69c1"
