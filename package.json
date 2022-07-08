@@ -20,6 +20,12 @@
     "build": "run-s -c build:*",
     "build:cjs": "tsc -p tsconfig.json",
     "build:esm": "tsc -p tsconfig.esm.json",
+    "lint": "run-s -c lint:*",
+    "lint:eslint": "eslint src",
+    "lint:tsc": "tsc --noEmit -p tsconfig.json",
+    "lint-fix": "run-s -c lint-fix:*",
+    "lint-fix:eslint": "eslint src --fix",
+    "lint-fix:prettier": "prettier \"src/**/*.{ts,tsx}\" --write",
     "test": "jest"
   },
   "peerDependencies": {
