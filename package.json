@@ -22,11 +22,15 @@
     "build:esm": "tsc -p tsconfig.esm.json"
   },
   "peerDependencies": {
+    "@recoiljs/refine": "^0.1.0",
     "next": "^12.2.0",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "recoil": "^0.7.4",
+    "recoil-sync": "^0.1.0"
   },
   "devDependencies": {
+    "@recoiljs/refine": "^0.1.0",
     "@types/node": "^18.0.3",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
@@ -35,6 +39,8 @@
     "npm-run-all": "^4.1.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "recoil": "^0.7.4",
+    "recoil-sync": "^0.1.0",
     "ts-node": "^10.8.2",
     "typescript": "^4.7.4"
   }
