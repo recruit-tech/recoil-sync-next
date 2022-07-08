@@ -1,0 +1,17 @@
+{
+  "name": "recoil-sync-next",
+  "version": "0.0.0",
+  "description": "recoil-sync stores for Next.js",
+  "keywords": [
+    "react",
+    "recoil",
+    "recoil-sync",
+    "next",
+    "nextjs",
+    "next.js"
+  ],
+  "main": "dist/cjs/index.js",
+  "repository": "https://github.com/recruit-tech/recoil-sync-next.git",
+  "license": "MIT",
+  "packageManager": "yarn@1.22.19"
+}
