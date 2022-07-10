@@ -13,5 +13,7 @@ jobs:
         run: yarn
       - name: Run eslint
         run: yarn lint:eslint
-      - name: Run type check
-        run: yarn lint:tsc
+      # Skip until the following is corrected.
+      # https://github.com/facebookexperimental/Recoil/issues/1902
+#       - name: Run type check
+#         run: yarn lint:tsc
