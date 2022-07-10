@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "yarn package-copy && next dev",
+    "build": "yarn package-copy && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "package-copy": "./package-copy.sh"
   },
   "dependencies": {
     "next": "12.2.2",
