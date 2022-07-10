@@ -25,7 +25,7 @@
     "lint:tsc": "tsc --noEmit -p tsconfig.json",
     "lint-fix": "run-s -c lint-fix:*",
     "lint-fix:eslint": "eslint src --fix",
-    "lint-fix:prettier": "prettier \"src/**/*.{ts,tsx}\" --write",
+    "lint-fix:prettier": "prettier \"{src,examples}/**/*.{ts,tsx}\" --write",
     "test": "jest",
     "prepare": "simple-git-hooks"
   },

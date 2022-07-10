@@ -1,21 +1,24 @@
 import Head from 'next/head'
 import Link from 'next/link'
 
-import { Counter } from '../src/components/Counter/counter'
-import styles from '../styles/Home.module.css'
+import { Counter } from '../../src/components/Counter/counter'
+import styles from '../../styles/Home.module.css'
 
-import type { NextPage } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 
-const Home: NextPage = () => {
+type Props = {
+  id: string
+}
+
+const Home: NextPage<Props> = ({ id }) => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Example of RecoilURLSyncJSONNext</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Create Next App</title>
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Top page</h1>
+        <h1 className={styles.title}>Article {id}</h1>
         <Counter />
         <ul>
           <li>
@@ -40,3 +43,16 @@ const Home: NextPage = () => {
 }
 
 export default Home
+
+export const getServerSideProps: GetServerSideProps<
+  Props,
+  { id: string }
+> = async ({ params }) => {
+  if (params?.id === undefined) throw new Error('`params.id` is undefined.')
+
+  return {
+    props: {
+      id: params?.id,
+    },
+  }
+}

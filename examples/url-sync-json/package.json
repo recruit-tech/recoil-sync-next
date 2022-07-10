@@ -12,7 +12,9 @@
   "dependencies": {
     "next": "12.2.2",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "recoil": "0.7.4",
+    "recoil-sync": "0.1.0"
   },
   "devDependencies": {
     "@types/node": "18.0.3",
