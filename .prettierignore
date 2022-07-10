@@ -1,4 +1,4 @@
-node_modules/
+**/node_modules/
 coverage/
-dist/
-yarn.lock
+**/dist/
+**/yarn.lock
