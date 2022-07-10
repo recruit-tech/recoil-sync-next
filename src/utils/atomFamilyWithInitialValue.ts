@@ -8,7 +8,7 @@ import {
 
 export function atomFamilyWithInitialValue<
   T extends SerializableParam,
-  P extends SerializableParam = string
+  P extends SerializableParam
 >(
   options: Omit<AtomFamilyOptions<T, P>, 'default'>
 ): (param: P, initialValue: T) => RecoilState<T> {
