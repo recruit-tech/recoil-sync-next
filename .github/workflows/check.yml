@@ -17,3 +17,5 @@ jobs:
       # https://github.com/facebookexperimental/Recoil/issues/1902
 #       - name: Run type check
 #         run: yarn lint:tsc
+      - name: Run jest
+        run: yarn test
