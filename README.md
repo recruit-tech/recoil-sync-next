@@ -1,6 +1,14 @@
 # recoil-sync-next
 
-recoil-sync stores for Next.js
+[Recoil Sync](https://recoiljs.org/docs/recoil-sync/introduction) stores for Next.js
+
+## Features
+
+- [URL Persistence](#url-persistence)
+  - Syncing an atom with the browser URL.
+- [Session Storage Persistence Synced with History](#session-storage-persistence-synced-with-history)
+  - Syncing an atom with the history position.
+- [Utilities](#utilities)
 
 ## Installation
 
@@ -12,14 +20,12 @@ yarn add recoil recoil-sync recoil-sync-next
 pnpm add recoil recoil-sync recoil-sync-next
 ```
 
-## API
-
-### URL Persistence
+## URL Persistence
 
 This provides recoil-sync's [URL Persistence](https://recoiljs.org/docs/recoil-sync/url-persistence)
-functionality synced with [next/router](https://nextjs.org/docs/api-reference/next/router).
+functionality interfaced with [next/router](https://nextjs.org/docs/api-reference/next/router).
 
-#### \<RecoilURLSyncJSONNext>
+### \<RecoilURLSyncJSONNext>
 
 A version of [\<RecoilURLSyncJSON>](https://recoiljs.org/docs/recoil-sync/api/RecoilURLSyncJSON) that works with next/router
 to sync atoms with the browser URL using JSON encoding.
@@ -33,7 +39,7 @@ function RecoilURLSyncJSONNext(props: {
 }): ReactNode
 ```
 
-##### Props
+#### Props
 
 - `storeKey`
   - This prop is used to match up which atoms should sync with this external store.
@@ -44,7 +50,7 @@ function RecoilURLSyncJSONNext(props: {
 - `children`
   - React elements in your component tree.
 
-##### Example
+#### Example
 
 ```tsx
 import { RecoilURLSyncJSONNext } from 'recoil-sync-next'
@@ -60,7 +66,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 ```
 
-#### \<RecoilURLSyncTransitNext>
+### \<RecoilURLSyncTransitNext>
 
 A version of [\<RecoilURLSyncTransit>](https://recoiljs.org/docs/recoil-sync/api/RecoilURLSyncTransit) that works with next/router
 to sync atoms with the browser URL using [Transit encoding](https://github.com/cognitect/transit-js).
@@ -75,7 +81,7 @@ function RecoilURLSyncJSONNext(props: {
 }): ReactNode
 ```
 
-##### Props
+#### Props
 
 - `storeKey`
   - This prop is used to match up which atoms should sync with this external store.
@@ -89,7 +95,7 @@ function RecoilURLSyncJSONNext(props: {
 - `children`
   - React elements in your component tree.
 
-##### Example
+#### Example
 
 ```tsx
 import { RecoilURLSyncTransitNext } from 'recoil-sync-next'
@@ -105,7 +111,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 ```
 
-### Session Storage Persistence synced with History
+## Session Storage Persistence Synced with History
 
 Provides persistence of atoms to session storage synced with the position of the history entry.
 It will save atoms to session storage when the history entry's position is moved.
@@ -124,7 +130,7 @@ function RecoilHistorySyncJSONNext(props: {
 }): ReactNode
 ```
 
-##### Props
+#### Props
 
 - `storeKey`
   - This prop is used to match up which atoms should sync with this external store.
@@ -132,7 +138,7 @@ function RecoilHistorySyncJSONNext(props: {
 - `children`
   - React elements in your component tree.
 
-##### Example
+#### Example
 
 ```tsx
 import { RecoilHistorySyncJSONNext } from 'recoil-sync-next'
@@ -148,7 +154,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 ```
 
-#### \<RecoilHistorySyncTransitNext>
+### \<RecoilHistorySyncTransitNext>
 
 To sync atoms with the position of the history entry using [Transit encoding](https://github.com/cognitect/transit-js).
 This should be a child element of [\<RecoilRoot>](https://recoiljs.org/docs/api-reference/core/RecoilRoot).
@@ -161,7 +167,7 @@ function RecoilHistorySyncTransitNext(props: {
 }): ReactNode
 ```
 
-##### Props
+#### Props
 
 - `storeKey`
   - This prop is used to match up which atoms should sync with this external store.
@@ -172,7 +178,7 @@ function RecoilHistorySyncTransitNext(props: {
 - `children`
   - React elements in your component tree.
 
-##### Example
+#### Example
 
 ```tsx
 import { RecoilHistorySyncTransitNext } from 'recoil-sync-next'
@@ -188,9 +194,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 ```
 
-### Utilities
+## Utilities
 
-#### atomFamilyWithInitialValue
+### atomFamilyWithInitialValue
 
 `atomFamily`, but initial value can be specified individually.
 
@@ -207,7 +213,7 @@ function atomFamilyWithInitialValue<
 }): (parameter: P, initialValue: T) => RecoilState<T>
 ```
 
-##### Type Parameters
+#### Type Parameters
 
 - T
   - The type of the atom value.
@@ -216,15 +222,15 @@ function atomFamilyWithInitialValue<
   - The type of the paramter that map to each atom.
     It must be compared using value-equality and must be serializable.
 
-##### Parameters
+#### Parameters
 
 See [atomFamily](https://recoiljs.org/docs/api-reference/utils/atomFamily) for more info.
 
-##### Return
+#### Return
 
 A function which takes `paramter` that map to an atom, and its `initialValue`.
 
-##### Example
+#### Example
 
 ```tsx
 import { atomFamilyWithInitialValue } from 'recoil-sync-next'
