@@ -26,9 +26,9 @@ to sync atoms with the browser URL using JSON encoding.
 This should be a child element of [\<RecoilRoot>](https://recoiljs.org/docs/api-reference/core/RecoilRoot).
 
 ```typescript
-function RecoilURLSyncJSONNext({
-  storeKey?: string | undefined,
-  location: LocationOption,
+function RecoilURLSyncJSONNext(props: {
+  storeKey?: string | undefined
+  location: LocationOption
   children: ReactNode
 }): ReactNode
 ```
@@ -46,7 +46,7 @@ function RecoilURLSyncJSONNext({
 
 ##### Example
 
-```typescript
+```tsx
 import { RecoilURLSyncJSONNext } from 'recoil-sync-next'
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -67,9 +67,9 @@ to sync atoms with the browser URL using [Transit encoding](https://github.com/c
 This should be a child element of [\<RecoilRoot>](https://recoiljs.org/docs/api-reference/core/RecoilRoot).
 
 ```typescript
-function RecoilURLSyncJSONNext({
-  storeKey?: string | undefined,
-  location: LocationOption,
+function RecoilURLSyncJSONNext(props: {
+  storeKey?: string | undefined
+  location: LocationOption
   handlers: ReadonlyArray<TransitHandler<any, any>>
   children: ReactNode
 }): ReactNode
@@ -91,7 +91,7 @@ function RecoilURLSyncJSONNext({
 
 ##### Example
 
-```typescript
+```tsx
 import { RecoilURLSyncTransitNext } from 'recoil-sync-next'
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -118,8 +118,8 @@ To sync atoms with the position of the history entry using JSON encoding.
 This should be a child element of [\<RecoilRoot>](https://recoiljs.org/docs/api-reference/core/RecoilRoot).
 
 ```typescript
-function RecoilHistorySyncJSONNext({
-  storeKey?: string | undefined,
+function RecoilHistorySyncJSONNext(props: {
+  storeKey?: string | undefined
   children: ReactNode
 }): ReactNode
 ```
@@ -134,7 +134,7 @@ function RecoilHistorySyncJSONNext({
 
 ##### Example
 
-```typescript
+```tsx
 import { RecoilHistorySyncJSONNext } from 'recoil-sync-next'
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -154,8 +154,8 @@ To sync atoms with the position of the history entry using [Transit encoding](ht
 This should be a child element of [\<RecoilRoot>](https://recoiljs.org/docs/api-reference/core/RecoilRoot).
 
 ```typescript
-function RecoilHistorySyncTransitNext({
-  storeKey?: string | undefined,
+function RecoilHistorySyncTransitNext(props: {
+  storeKey?: string | undefined
   handlers: ReadonlyArray<TransitHandler<any, any>>
   children: ReactNode
 }): ReactNode
@@ -174,7 +174,7 @@ function RecoilHistorySyncTransitNext({
 
 ##### Example
 
-```typescript
+```tsx
 import { RecoilHistorySyncTransitNext } from 'recoil-sync-next'
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -198,10 +198,12 @@ function MyApp({ Component, pageProps }: AppProps) {
 function atomFamilyWithInitialValue<
   T extends SerializableParam,
   P extends SerializableParam
->({
-  key: NodeKey,
-  effects?: | ReadonlyArray<AtomEffect<T>> | ((param: P) => ReadonlyArray<AtomEffect<T>>),
-  dangerouslyAllowMutability?: boolean,
+>(options: {
+  key: string
+  effects?:
+    | ReadonlyArray<AtomEffect<T>>
+    | ((param: P) => ReadonlyArray<AtomEffect<T>>)
+  dangerouslyAllowMutability?: boolean
 }): (parameter: P, initialValue: T) => RecoilState<T>
 ```
 
@@ -224,15 +226,16 @@ A function which takes `paramter` that map to an atom, and its `initialValue`.
 
 ##### Example
 
-```typescript
+```tsx
 import { atomFamilyWithInitialValue } from 'recoil-sync-next'
 
 const countState = atomFamilyWithInitialValue<number, string>({
   key: 'count',
 })
 
-const MyComponent = (React.FC = () => {
-  const [count1, setCount1] = useRecoilState(countState('foo', 0)) // count1 is initialized to 0
+const MyComponent: React.FC = () => {
+  const [count1, setCount1] = useRecoilState(countState('foo', 0))   // count1 is initialized to 0
   const [count2, setCount2] = useRecoilState(countState('bar', 100)) // count2 is initialized to 100
-})
+  ...
+}
 ```
