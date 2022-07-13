@@ -11,11 +11,13 @@ jobs:
       - uses: actions/checkout@v1
       - name: yarn
         run: yarn
-      - name: Run eslint
-        run: yarn lint:eslint
+      - name: Run eslint for library
+        run: yarn lint:lib:eslint
       # Skip until the following is corrected.
       # https://github.com/facebookexperimental/Recoil/issues/1902
-#       - name: Run type check
-#         run: yarn lint:tsc
+      #       - name: Run type check for library
+      #         run: yarn lint:lib:tsc
+      - name: Run eslint for examples
+        run: yarn lint:ex:eslint
       - name: Run jest
         run: yarn test
