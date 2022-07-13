@@ -7,6 +7,7 @@ cd ../../
 yarn pack --filename recoil-sync-next-local.tgz
 
 cd $CURRENT/node_modules
+rm -Rf recoil-sync-next/
 tar zxf ../../../recoil-sync-next-local.tgz
 mv package/ recoil-sync-next/
 
