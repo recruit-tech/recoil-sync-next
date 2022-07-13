@@ -23,7 +23,19 @@ jobs:
           yarn lint
       - name: build
         run: yarn build
-      - name: release
+      - name: npm release
         run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: gtihub release
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          files: |
+            LICENSE
+            package.json
+            yarn.lock
+            dist/*
+            src/
+            tsconfig.json
