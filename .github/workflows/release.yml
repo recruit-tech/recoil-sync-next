@@ -1,0 +1,29 @@
+name: 'release'
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - "v*"
+jobs:
+  release:
+    name: check version, add tag and release
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.14.0
+      - name: install dependencies
+        run: yarn
+      - name: release check
+        run: |
+          yarn test
+          yarn lint
+      - name: build
+        run: yarn build
+      - name: release
+        run: yarn publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
