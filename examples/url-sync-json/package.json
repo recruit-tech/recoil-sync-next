@@ -3,11 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "yarn package-copy && next dev",
-    "build": "yarn package-copy && next build",
+    "inst": "yarn install",
+    "predev": "./package-copy.sh",
+    "dev": "next dev",
+    "prebuild": "./package-copy.sh",
+    "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "package-copy": "./package-copy.sh"
+    "lint:eslint": "next lint",
+    "lint:tsc": "tsc --noEmit -p tsconfig.json",
+    "lint-fix:eslint": "next lint --fix",
+    "lint-fix:prettier": "prettier \"{pages,src,styles}/**/*.{ts,tsx,css}\" --write"
   },
   "dependencies": {
     "next": "12.2.2",

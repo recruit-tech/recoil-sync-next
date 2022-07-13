@@ -15,24 +15,34 @@
   "license": "MIT",
   "packageManager": "yarn@1.22.19",
   "scripts": {
+    "inst": "run-s -c inst:*",
+    "inst:lib": "yarn install",
+    "inst:ex": "CMD=inst run-s -c run-ex:*",
     "clean": "rm -Rf dist coverage",
     "clean-build": "run-s clean build",
     "build": "run-s -c build:*",
     "build:cjs": "tsc -p tsconfig.json",
     "build:esm": "tsc -p tsconfig.esm.json",
     "lint": "run-s -c lint:*",
-    "lint:eslint": "eslint src",
-    "lint:tsc": "tsc --noEmit -p tsconfig.json",
-    "lint:examples": "run-s -c examples:*",
-    "lint:examples:url-sync-json": "yarn --cwd examples/url-sync-json run lint",
+    "lint:lib": "run-s -c lint:lib:*",
+    "lint:lib:eslint": "eslint src",
+    "lint:lib:tsc": "tsc --noEmit -p tsconfig.json",
+    "lint:ex": "run-s -c lint:ex:*",
+    "lint:ex:eslint": "CMD=lint:eslint run-s -c run-ex:*",
+    "lint:ex:tsc": "CMD=lint:tsc run-s -c run-ex:*",
     "lint-fix": "run-s -c lint-fix:*",
-    "lint-fix:eslint": "eslint src --fix",
-    "lint-fix:prettier": "prettier \"{src,examples}/**/*.{ts,tsx}\" --write",
+    "lint-fix:lib": "run-s -c lint-fix:lib:*",
+    "lint-fix:lib:eslint": "eslint src --fix",
+    "lint-fix:lib:prettier": "prettier \"src/**/*.{ts,tsx}\" --write",
+    "lint-fix:ex": "run-s -c lint-fix:ex:*",
+    "lint-fix:ex:eslint": "CMD=lint-fix:eslint run-s -c run-ex:*",
+    "lint-fix:ex:prettier": "CMD=lint-fix:prettier run-s -c run-ex:*",
     "test": "jest",
-    "prepare": "simple-git-hooks"
+    "prepare": "simple-git-hooks",
+    "run-ex:url-sync-json": "yarn --cwd examples/url-sync-json run $CMD"
   },
   "simple-git-hooks": {
-    "pre-commit": "yarn run lint:eslint && yarn run lint:examples && yarn run test"
+    "pre-commit": "yarn run lint:lib:eslint && yarn run lint:ex:eslint && yarn run test"
   },
   "peerDependencies": {
     "@recoiljs/refine": "^0.1.0",
