@@ -23,6 +23,8 @@
     "lint": "run-s -c lint:*",
     "lint:eslint": "eslint src",
     "lint:tsc": "tsc --noEmit -p tsconfig.json",
+    "lint:examples": "run-s -c examples:*",
+    "lint:examples:url-sync-json": "yarn --cwd examples/url-sync-json run lint",
     "lint-fix": "run-s -c lint-fix:*",
     "lint-fix:eslint": "eslint src --fix",
     "lint-fix:prettier": "prettier \"{src,examples}/**/*.{ts,tsx}\" --write",
@@ -30,7 +32,7 @@
     "prepare": "simple-git-hooks"
   },
   "simple-git-hooks": {
-    "pre-commit": "yarn run lint:eslint && yarn run test"
+    "pre-commit": "yarn run lint:eslint && yarn run lint:examples && yarn run test"
   },
   "peerDependencies": {
     "@recoiljs/refine": "^0.1.0",
