@@ -43,7 +43,7 @@ export function useSyncHistoryNext({
       }
       sessionStorage.setItem(storageKey, serialize(values))
     },
-    [storeKey]
+    [storeKey, serialize]
   )
 
   const loadItems: LoadItems = useCallback(
@@ -55,7 +55,7 @@ export function useSyncHistoryNext({
       }
       return deserialize(valuesString)
     },
-    [storeKey]
+    [storeKey, deserialize]
   )
 
   const { events } = useRouter()
