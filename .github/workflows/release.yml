@@ -16,11 +16,11 @@ jobs:
       - name: install dependencies
         run: yarn
       - name: release check
+        # Skip until the following is corrected.
+        # https://github.com/facebookexperimental/Recoil/issues/1902
+        # yarn lint
         run: |
           yarn test
-# Skip until the following is corrected.
-# https://github.com/facebookexperimental/Recoil/issues/1902
-#          yarn lint
           yarn run lint:lib:eslint
       - name: build
         run: yarn build
