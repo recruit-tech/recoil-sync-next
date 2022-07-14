@@ -22,19 +22,13 @@ const Home: NextPage<Props> = ({ id }) => {
         <Counter />
         <ul>
           <li>
-            <Link href="/articles/1">
-              <a>article 1</a>
-            </Link>
+            <Link href="/articles/1">article 1</Link>
           </li>
           <li>
-            <Link href="/articles/2">
-              <a>article 2</a>
-            </Link>
+            <Link href="/articles/2">article 2</Link>
           </li>
           <li>
-            <Link href="/articles/3">
-              <a>article 3</a>
-            </Link>
+            <Link href="/articles/3">article 3</Link>
           </li>
         </ul>
       </main>
