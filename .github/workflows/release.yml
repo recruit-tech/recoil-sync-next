@@ -1,0 +1,41 @@
+name: 'release'
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - "v*"
+jobs:
+  release:
+    name: check version, add tag and release
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.14.0
+      - name: install dependencies
+        run: yarn
+      - name: release check
+        run: |
+          yarn test
+          yarn lint
+      - name: build
+        run: yarn build
+      - name: npm release
+        run: yarn publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: gtihub release
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          files: |
+            LICENSE
+            package.json
+            yarn.lock
+            dist/*
+            src/
+            tsconfig.json
