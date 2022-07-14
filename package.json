@@ -39,6 +39,7 @@
     "lint-fix:ex:prettier": "CMD=lint-fix:prettier run-s -c run-ex:*",
     "test": "jest",
     "prepare": "simple-git-hooks",
+    "run-ex:history-sync-json": "yarn --cwd examples/history-sync-json run $CMD",
     "run-ex:url-sync-json": "yarn --cwd examples/url-sync-json run $CMD"
   },
   "simple-git-hooks": {
