@@ -1,7 +1,8 @@
 import Head from 'next/head'
 import Link from 'next/link'
 
-import { Counter } from '../../src/components/Counter/counter'
+import { Counter } from '../../src/components/Counter'
+import { Textfield } from '../../src/components/Textfield'
 import styles from '../../styles/Home.module.css'
 
 import type { GetServerSideProps, NextPage } from 'next'
@@ -19,7 +20,10 @@ const Home: NextPage<Props> = ({ id }) => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>Article {id}</h1>
-        <Counter />
+        <Textfield />
+        <Counter name="foo" initialValue={0} />
+        <Counter name="bar" initialValue={10} />
+        <Counter name="baz" initialValue={100} />
         <ul>
           <li>
             <Link href="/articles/1">article 1</Link>
