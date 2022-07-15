@@ -1,6 +1,6 @@
 {
   "name": "recoil-sync-next",
-  "version": "0.0.0",
+  "version": "0.0.0-0",
   "description": "recoil-sync stores for Next.js",
   "keywords": [
     "react",
