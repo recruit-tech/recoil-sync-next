@@ -33,7 +33,7 @@ jobs:
         env:
           NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: npm registry release
-        run: yarn publish
+        run: yarn publish --access public
         env:
           NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: github release
