@@ -13,6 +13,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16.14.0
+          registry-url: 'https://registry.npmjs.org'
       - name: install dependencies
         run: yarn
       - name: release check
