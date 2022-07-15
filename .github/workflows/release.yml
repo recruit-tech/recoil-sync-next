@@ -29,7 +29,7 @@ jobs:
       - name: npm release
         run: yarn publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: gtihub release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
