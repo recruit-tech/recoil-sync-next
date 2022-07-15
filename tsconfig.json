@@ -10,7 +10,10 @@
     "jsx": "react-jsx",
     "outDir": "dist/cjs",
     "declaration": true,
-    "declarationMap": true
+    "declarationMap": true,
+    // Skip until the following is corrected.
+    // https://github.com/facebookexperimental/Recoil/issues/1902
+    "skipLibCheck": true
   },
   "include": ["src"],
   "exclude": ["dist", "node_modules", "examples"]
