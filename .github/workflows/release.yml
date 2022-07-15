@@ -13,8 +13,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16.14.0
-          registry-url: 'https://registry.npmjs.org'
-          always-auth: true
+          cache: yarn
       - name: install dependencies
         run: yarn
       - name: release check
@@ -26,11 +25,15 @@ jobs:
           yarn run lint:lib:eslint
       - name: build
         run: yarn build
-      - name: npm release
+      - name: setup npm auth
+        run: |
+          echo "registry=https://registry.npmjs.org" >> ~/.npmrc
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
+      - name: npm registry release
         run: yarn publish
         env:
           NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: gtihub release
+      - name: github release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
