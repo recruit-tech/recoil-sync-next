@@ -14,6 +14,7 @@ jobs:
         with:
           node-version: 16.14.0
           registry-url: 'https://registry.npmjs.org'
+          always-auth: true
       - name: install dependencies
         run: yarn
       - name: release check
