@@ -1,0 +1,47 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+
+# testing
+/coverage
+/dist/**/*.test.js
+/dist/**/*.test.d.ts
+/dist/**/*.test.d.ts.map
+/src/**/*.test.ts
+/src/**/*.test.tsx
+
+# examples
+/examples
+
+# misc
+.DS_Store
+*.pem
+*.tgz
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# local env files
+.env*.local
+
+# typescript
+*.tsbuildinfo
+
+# tools
+/.github
+/.vscode
+/.eslintignore
+/.eslintrc.json
+/.gitignore
+/.npmignore
+/.prettierignore
+/.prettierrc.json
+/jest.config.ts
+/renovate.json
+/tsconfig.esm.json
+/tsconfig.json
+/yarn.lock
