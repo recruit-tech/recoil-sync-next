@@ -5,35 +5,35 @@ import { BrowserInterface, RecoilURLSyncOptions } from 'recoil-sync'
 export function useSyncURLNext(): Partial<
   Omit<RecoilURLSyncOptions, 'children'>
 > {
-  const router = useRouter()
+  const { isReady, asPath, replace, push, events } = useRouter()
 
   const urlRef = useRef<{
     path: string
     needNotify: boolean
     handler?: () => void
   }>({
-    path: router.isReady ? router.asPath : '/',
-    needNotify: !router.isReady,
+    path: isReady ? asPath : '/',
+    needNotify: !isReady,
     handler: undefined,
   })
 
   const { needNotify, handler } = urlRef.current
   useEffect(() => {
-    if (needNotify && handler) {
-      urlRef.current.path = router.asPath
+    if (isReady && needNotify && handler) {
+      urlRef.current.path = asPath
       urlRef.current.needNotify = false
       handler()
     }
-  }, [needNotify, handler, router.asPath])
+  }, [isReady, needNotify, handler, asPath])
 
   const updateURL = useCallback((url: string) => {
     urlRef.current.path = url
   }, [])
 
   const browserInterface: BrowserInterface = {
-    replaceURL: useCallback((url: string) => router.replace(url), [router]),
+    replaceURL: useCallback((url: string) => replace(url), [replace]),
 
-    pushURL: useCallback((url: string) => router.push(url), [router]),
+    pushURL: useCallback((url: string) => push(url), [push]),
 
     getURL: useCallback(() => {
       const url = new URL(
@@ -46,16 +46,16 @@ export function useSyncURLNext(): Partial<
     listenChangeURL: useCallback(
       (handler: () => void) => {
         urlRef.current.handler = handler
-        router.events.on('routeChangeStart', updateURL)
-        router.events.on('routeChangeStart', handler)
+        events.on('routeChangeStart', updateURL)
+        events.on('routeChangeStart', handler)
 
         return () => {
-          router.events.off('routeChangeStart', handler)
-          router.events.off('routeChangeStart', updateURL)
+          events.off('routeChangeStart', handler)
+          events.off('routeChangeStart', updateURL)
           urlRef.current.handler = undefined
         }
       },
-      [router, updateURL]
+      [events, updateURL]
     ),
   }
 
