@@ -82,11 +82,12 @@ describe('<RecoilURLSyncTransitNext />', () => {
           await waitFor(() =>
             expect(getByTestId('foo').textContent).toBe('FooFoo')
           )
-          urlPath = mockRouter.asPath
         })
 
         describe('then, navigate (pushstate)', () => {
           beforeEach(() => {
+            urlPath = mockRouter.asPath // save current URL before push()
+
             act(() => {
               mockRouter.push('/next')
             })

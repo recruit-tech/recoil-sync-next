@@ -77,11 +77,12 @@ describe('<RecoilURLSyncJSONNext />', () => {
           await waitFor(() =>
             expect(getByTestId('foo').textContent).toBe('FooFoo')
           )
-          urlPath = mockRouter.asPath
         })
 
         describe('then, navigate (pushstate)', () => {
           beforeEach(() => {
+            urlPath = mockRouter.asPath // save current URL before push()
+
             act(() => {
               mockRouter.push('/next')
             })
@@ -159,11 +160,12 @@ describe('<RecoilURLSyncJSONNext />', () => {
           await waitFor(() =>
             expect(getByTestId('foo').textContent).toBe('BarFoo')
           )
-          urlPath = mockRouter.asPath
         })
 
         describe('then, navigate (pushstate)', () => {
           beforeEach(() => {
+            urlPath = mockRouter.asPath // save current URL before push()
+
             act(() => {
               mockRouter.push('/next')
             })
@@ -239,6 +241,10 @@ describe('<RecoilURLSyncJSONNext />', () => {
         beforeEach(() => {
           act(() => {
             mockRouter.isReady = true
+            // because mockRouter holds router's snapshot into useState(),
+            // we need to fire 'routeChangeComplete' event to update the snapshot.
+            // otherwise isReady will not be reflected.
+            mockRouter.events.emit('routeChangeComplete')
             rerender(
               <App>
                 <Child />
@@ -264,11 +270,12 @@ describe('<RecoilURLSyncJSONNext />', () => {
             await waitFor(() =>
               expect(getByTestId('foo').textContent).toBe('BarFoo')
             )
-            urlPath = mockRouter.asPath
           })
 
           describe('then, navigate (pushstate)', () => {
             beforeEach(() => {
+              urlPath = mockRouter.asPath // save current URL before push()
+
               act(() => {
                 mockRouter.push('/next')
               })
