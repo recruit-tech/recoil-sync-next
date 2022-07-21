@@ -7,7 +7,7 @@ import styles from './index.module.css'
 export const textState = atom<string>({
   key: 'textState',
   default: '',
-  effects: [syncEffect({ refine: string() })],
+  effects: [syncEffect({ storeKey: 'history-json-store' ,refine: string() })],
 })
 
 export const Textfield: React.FC = () => {

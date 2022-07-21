@@ -7,7 +7,7 @@ import styles from './index.module.css'
 
 export const counter = atomFamilyWithInitialValue<number, string>({
   key: 'counterState',
-  effects: [syncEffect({ refine: number() })],
+  effects: [syncEffect({ storeKey: 'history-json-store', refine: number() })],
 })
 
 export type Props = {

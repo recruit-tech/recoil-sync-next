@@ -7,7 +7,7 @@ import type { AppProps } from 'next/app'
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <RecoilRoot>
-      <RecoilHistorySyncJSONNext>
+      <RecoilHistorySyncJSONNext storeKey="history-json-store">
         <Component {...pageProps} />
       </RecoilHistorySyncJSONNext>
     </RecoilRoot>
