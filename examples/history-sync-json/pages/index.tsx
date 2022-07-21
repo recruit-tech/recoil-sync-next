@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Link from 'next/link'
 
 import { Counter } from '../src/components/Counter'
 import { Links } from '../src/components/Links'
