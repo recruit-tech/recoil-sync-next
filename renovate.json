@@ -4,6 +4,8 @@
     "config:base"
   ],
   "timezone": "Asia/Tokyo",
+  "schedule": ["after 10pm and before 5am every weekend"],
   "dependencyDashboard": false,
+  "automerge": true,
   "separateMultipleMajor": true
 }
