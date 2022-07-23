@@ -80,28 +80,40 @@ describe('<RecoilHistorySyncTransitNext />', () => {
           )
         })
 
-        describe('then, navigate (pushstate)', () => {
+        describe('then, navigate to the same URL (replacestate)', () => {
           beforeEach(() => {
             act(() => {
-              mockRouter.push('/next')
-              global.history.state.key = 'test2'
+              mockRouter.replace('/')
             })
           })
 
-          it('should be restored default value', async () => {
-            expect(getByTestId('foo').textContent).toBe('Foo')
+          it('should be rendered with same value', async () => {
+            expect(getByTestId('foo').textContent).toBe('FooFoo')
           })
 
-          describe('then, backward', () => {
+          describe('then, navigate to the new URL (pushstate)', () => {
             beforeEach(() => {
               act(() => {
-                global.history.state.key = 'test1'
-                mockRouter.push('/') // back() is not supported yet
+                mockRouter.push('/next')
+                global.history.state.key = 'test2'
               })
             })
 
-            it('should be restored updated value', async () => {
-              expect(getByTestId('foo').textContent).toBe('FooFoo')
+            it('should be restored default value', async () => {
+              expect(getByTestId('foo').textContent).toBe('Foo')
+            })
+
+            describe('then, backward', () => {
+              beforeEach(() => {
+                act(() => {
+                  global.history.state.key = 'test1'
+                  mockRouter.push('/') // back() is not supported yet
+                })
+              })
+
+              it('should be restored updated value', async () => {
+                expect(getByTestId('foo').textContent).toBe('FooFoo')
+              })
             })
           })
         })
@@ -161,28 +173,42 @@ describe('<RecoilHistorySyncTransitNext />', () => {
             )
           })
 
-          describe('then, navigate (pushstate)', () => {
+          describe('then, navigate to the same URL (replacestate)', () => {
             beforeEach(() => {
               act(() => {
-                mockRouter.push('/next')
-                global.history.state.key = 'test2'
+                mockRouter.replace('/')
               })
             })
 
-            it('should be restored default value', async () => {
-              expect(getByTestId('foo').textContent).toBe(date1.toISOString())
+            it('should be rendered with same value', async () => {
+              expect(getByTestId('foo').textContent).toBe(date2.toISOString())
             })
 
-            describe('then, backward', () => {
+            describe('then, navigate the new URL (pushstate)', () => {
               beforeEach(() => {
                 act(() => {
-                  global.history.state.key = 'test1'
-                  mockRouter.push('/') // back() is not supported yet
+                  mockRouter.push('/next')
+                  global.history.state.key = 'test2'
                 })
               })
 
-              it('should be restored updated value', async () => {
-                expect(getByTestId('foo').textContent).toBe(date2.toISOString())
+              it('should be restored default value', async () => {
+                expect(getByTestId('foo').textContent).toBe(date1.toISOString())
+              })
+
+              describe('then, backward', () => {
+                beforeEach(() => {
+                  act(() => {
+                    global.history.state.key = 'test1'
+                    mockRouter.push('/') // back() is not supported yet
+                  })
+                })
+
+                it('should be restored updated value', async () => {
+                  expect(getByTestId('foo').textContent).toBe(
+                    date2.toISOString()
+                  )
+                })
               })
             })
           })
@@ -241,28 +267,40 @@ describe('<RecoilHistorySyncTransitNext />', () => {
             )
           })
 
-          describe('then, navigate (pushstate)', () => {
+          describe('then, navigate to the same URL (replacestate)', () => {
             beforeEach(() => {
               act(() => {
-                mockRouter.push('/next')
-                global.history.state.key = 'test2'
+                mockRouter.replace('/')
               })
             })
 
-            it('should be restored default value', async () => {
-              expect(getByTestId('foo').textContent).toBe('Foo')
+            it('should be rendered with same value', async () => {
+              expect(getByTestId('foo').textContent).toBe('Bar,Baz')
             })
 
-            describe('then, backward', () => {
+            describe('then, navigate to the new URL (pushstate)', () => {
               beforeEach(() => {
                 act(() => {
-                  global.history.state.key = 'test1'
-                  mockRouter.push('/') // back() is not supported yet
+                  mockRouter.push('/next')
+                  global.history.state.key = 'test2'
                 })
               })
 
-              it('should be restored updated value', async () => {
-                expect(getByTestId('foo').textContent).toBe('Bar,Baz')
+              it('should be restored default value', async () => {
+                expect(getByTestId('foo').textContent).toBe('Foo')
+              })
+
+              describe('then, backward', () => {
+                beforeEach(() => {
+                  act(() => {
+                    global.history.state.key = 'test1'
+                    mockRouter.push('/') // back() is not supported yet
+                  })
+                })
+
+                it('should be restored updated value', async () => {
+                  expect(getByTestId('foo').textContent).toBe('Bar,Baz')
+                })
               })
             })
           })
@@ -324,28 +362,40 @@ describe('<RecoilHistorySyncTransitNext />', () => {
             )
           })
 
-          describe('then, navigate (pushstate)', () => {
+          describe('then, navigate to the same URL (replacestate)', () => {
             beforeEach(() => {
               act(() => {
-                mockRouter.push('/next')
-                global.history.state.key = 'test2'
+                mockRouter.replace('/')
               })
             })
 
-            it('should be restored default value', async () => {
-              expect(getByTestId('foo').textContent).toBe('foo,Foo')
+            it('should be rendered with same value', async () => {
+              expect(getByTestId('foo').textContent).toBe('bar,Bar,baz,Baz')
             })
 
-            describe('then, backward', () => {
+            describe('then, navigate to the new URL (pushstate)', () => {
               beforeEach(() => {
                 act(() => {
-                  global.history.state.key = 'test1'
-                  mockRouter.push('/') // back() is not supported yet
+                  mockRouter.push('/next')
+                  global.history.state.key = 'test2'
                 })
               })
 
-              it('should be restored updated value', async () => {
-                expect(getByTestId('foo').textContent).toBe('bar,Bar,baz,Baz')
+              it('should be restored default value', async () => {
+                expect(getByTestId('foo').textContent).toBe('foo,Foo')
+              })
+
+              describe('then, backward', () => {
+                beforeEach(() => {
+                  act(() => {
+                    global.history.state.key = 'test1'
+                    mockRouter.push('/') // back() is not supported yet
+                  })
+                })
+
+                it('should be restored updated value', async () => {
+                  expect(getByTestId('foo').textContent).toBe('bar,Bar,baz,Baz')
+                })
               })
             })
           })
