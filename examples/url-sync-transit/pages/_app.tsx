@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <RecoilRoot>
       <RecoilURLSyncTransitNext
         location={{ part: 'queryParams' }}
-        storeKey="history-transit-store"
+        storeKey="url-transit-store"
         handlers={[
           {
             tag: 'VS',

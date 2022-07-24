@@ -14,7 +14,7 @@ const SSRPage: NextPage<Props> = ({ id }) => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>SSR - Example of RecoilHistorySyncJSONNext</title>
+        <title>SSR - Example of RecoilHistorySyncTransitNext</title>
       </Head>
 
       <main className={styles.main}>

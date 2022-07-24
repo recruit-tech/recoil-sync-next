@@ -14,7 +14,7 @@ const SSGPage: NextPage<Props> = ({ id }) => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>SSG - Example of RecoilHistorySyncJSONNext</title>
+        <title>SSG - Example of RecoilHistorySyncTransitNext</title>
       </Head>
 
       <main className={styles.main}>

@@ -10,7 +10,7 @@ const Home: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Top - Example of RecoilHistorySyncJSONNext</title>
+        <title>Top - Example of RecoilURLSyncTransitNext</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

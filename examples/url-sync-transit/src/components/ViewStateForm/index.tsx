@@ -15,7 +15,7 @@ const viewStateChecker = custom(x => x instanceof ViewState ? x : null);
 const viewState = atom<ViewState>({
   key: 'viewState',
   default: new ViewState(true, [1, 2]),
-  effects: [syncEffect({ storeKey: 'history-transit-store', refine: viewStateChecker })],
+  effects: [syncEffect({ storeKey: 'url-transit-store', refine: viewStateChecker })],
 })
 
 export const ViewStateForm: React.FC = () => {
