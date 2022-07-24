@@ -1,0 +1,34 @@
+{
+  "name": "url-sync-json",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "inst": "yarn install",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint:eslint": "next lint",
+    "lint:tsc": "tsc --noEmit -p tsconfig.json",
+    "lint-fix:eslint": "next lint --fix",
+    "lint-fix:prettier": "prettier \"{pages,src,styles}/**/*.{ts,tsx,css}\" --write",
+    "local-build": "yarn run local-copy && yarn run build",
+    "local-dev": "yarn run local-copy && yarn run dev",
+    "local-copy": "./package-copy.sh"
+  },
+  "dependencies": {
+    "next": "^12.2.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "recoil": "^0.7.4",
+    "recoil-sync": "^0.1.0",
+    "recoil-sync-next": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.3",
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "eslint": "^8.19.0",
+    "eslint-config-next": "^12.2.2",
+    "typescript": "^4.7.4"
+  }
+}
