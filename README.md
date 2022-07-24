@@ -73,10 +73,10 @@ to sync atoms with the browser URL using [Transit encoding](https://github.com/c
 This should be a child element of [\<RecoilRoot>](https://recoiljs.org/docs/api-reference/core/RecoilRoot).
 
 ```typescript
-function RecoilURLSyncJSONNext(props: {
+function RecoilURLSyncTransitNext(props: {
   storeKey?: string | undefined
   location: LocationOption
-  handlers: ReadonlyArray<TransitHandler<any, any>>
+  handlers?: ReadonlyArray<TransitHandler<any, any>>
   children: ReactNode
 }): ReactNode
 ```
@@ -162,7 +162,7 @@ This should be a child element of [\<RecoilRoot>](https://recoiljs.org/docs/api-
 ```typescript
 function RecoilHistorySyncTransitNext(props: {
   storeKey?: string | undefined
-  handlers: ReadonlyArray<TransitHandler<any, any>>
+  handlers?: ReadonlyArray<TransitHandler<any, any>>
   children: ReactNode
 }): ReactNode
 ```
