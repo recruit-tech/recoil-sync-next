@@ -196,9 +196,56 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 ## Utilities
 
+### atomWithInitialValue
+
+`atom`, but initial value can be specified when using it.
+
+Note: This is just a utility and does not depend on either Recoil Sync or Next.js.
+
+```typescript
+function atomWithInitialValue<T extends SerializableParam>(options: {
+  key: string
+  effects?:
+    | ReadonlyArray<AtomEffect<T>>
+    | ((param: P) => ReadonlyArray<AtomEffect<T>>)
+  dangerouslyAllowMutability?: boolean
+}): (initialValue: T) => RecoilState<T>
+```
+
+#### Type Parameters
+
+- T
+  - The type of the atom value.
+    It must be compared using value-equality and must be serializable.
+
+#### Parameters
+
+See [atom](https://recoiljs.org/docs/api-reference/core/atom) for more info.
+
+#### Return
+
+A function which takes its `initialValue`.
+
+#### Example
+
+```tsx
+import { atomWithInitialValue } from 'recoil-sync-next'
+
+const countState = atomWithInitialValue<number>({
+  key: 'count',
+})
+
+const MyComponent: React.FC = () => {
+  const [count, setCount] = useRecoilState(countState(100)) // count is initialized to 100
+  ...
+}
+```
+
 ### atomFamilyWithInitialValue
 
-`atomFamily`, but initial value can be specified individually.
+`atomFamily`, but initial value can be specified individually when using it.
+
+Note: This is just a utility and does not depend on either Recoil Sync or Next.js.
 
 ```typescript
 function atomFamilyWithInitialValue<
