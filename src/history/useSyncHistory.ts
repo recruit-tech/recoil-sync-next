@@ -17,7 +17,7 @@ export type SaveItems = (
 
 export type LoadItems = (historyKey: string) => Record<string, unknown>
 
-export type ListenChangeHistory = (handler: () => void) => () => void
+export type ListenChangeHistory = (handler: (url: string) => void) => () => void
 
 export type RecoilHistorySyncOptions = {
   storeKey?: StoreKey
@@ -70,8 +70,8 @@ export function useSyncHistory({
 
   const listen: ListenToItems = useCallback(
     ({ updateAllKnownItems }) => {
-      return listenChangeHistory(() => {
-        // saving previouse history associated items
+      return listenChangeHistory((url) => {
+        // saving previouse history associated items.
         if (historyInfo.current) {
           const { historyKey, historyItems } = historyInfo.current
           saveItems(historyKey, historyItems)
@@ -80,14 +80,21 @@ export function useSyncHistory({
         const historyKey = getHistoryKey()
         assertString(historyKey)
 
-        // clear history associated items (by navigation)
+        // history has changed by navigation.
         if (historyKey === historyInfo.current?.historyKey) {
+          // nothing to do if URL wasn't changed.
+          if (url === globalThis.location?.pathname) {
+            return
+          }
+
+          // clear history associated items from Recoil store.
           historyInfo.current = undefined
           updateAllKnownItems(new Map())
           return
         }
 
-        // loading history associated items (by forward/back)
+        // history has changed by forward/backward.
+        // loading next history associated items from SessionStorage.
         const historyItems = loadItems(historyKey)
         historyInfo.current = { historyKey, historyItems }
         updateAllKnownItems(new Map(Object.entries(historyItems)))
