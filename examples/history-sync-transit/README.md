@@ -1,6 +1,6 @@
-## history-sync-json
+## history-sync-transit
 
-Example of `RecoilHistorySyncJSONNext`.
+Example of `RecoilHistorySyncTransitNext`.
 
 ```bash
 # run example application

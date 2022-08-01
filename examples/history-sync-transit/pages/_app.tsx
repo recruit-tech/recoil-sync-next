@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           {
             tag: 'VS',
             class: ViewState,
-            write: x => [x.active, x.pos],
+            write: (x) => [x.active, x.pos],
             read: ([active, pos]) => new ViewState(active, pos),
           },
         ]}

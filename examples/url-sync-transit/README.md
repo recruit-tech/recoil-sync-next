@@ -1,6 +1,6 @@
-## url-sync-json
+## url-sync-transit
 
-Example of `RecoilURLSyncJSONNext`.
+Example of `RecoilURLSyncTransitNext`.
 
 ```bash
 # run example application
