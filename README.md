@@ -196,14 +196,14 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 ## Utilities
 
-### atomWithInitialValue
+### initializableAtom
 
 `atom`, but initial value can be specified when using it.
 
 Note: This is just a utility and does not depend on either Recoil Sync or Next.js.
 
 ```typescript
-function atomWithInitialValue<T extends SerializableParam>(options: {
+function initializableAtom<T extends SerializableParam>(options: {
   key: string
   effects?:
     | ReadonlyArray<AtomEffect<T>>
@@ -229,9 +229,9 @@ A function which takes its `initialValue`.
 #### Example
 
 ```tsx
-import { atomWithInitialValue } from 'recoil-sync-next'
+import { initializableAtom } from 'recoil-sync-next'
 
-const countState = atomWithInitialValue<number>({
+const countState = initializableAtom<number>({
   key: 'count',
 })
 
@@ -241,14 +241,14 @@ const MyComponent: React.FC = () => {
 }
 ```
 
-### atomFamilyWithInitialValue
+### initializableAtomFamily
 
 `atomFamily`, but initial value can be specified individually when using it.
 
 Note: This is just a utility and does not depend on either Recoil Sync or Next.js.
 
 ```typescript
-function atomFamilyWithInitialValue<
+function initializableAtomFamily<
   T extends SerializableParam,
   P extends SerializableParam
 >(options: {
@@ -280,9 +280,9 @@ A function which takes `paramter` that map to an atom, and its `initialValue`.
 #### Example
 
 ```tsx
-import { atomFamilyWithInitialValue } from 'recoil-sync-next'
+import { initializableAtomFamily } from 'recoil-sync-next'
 
-const countState = atomFamilyWithInitialValue<number, string>({
+const countState = initializableAtomFamily<number, string>({
   key: 'count',
 })
 

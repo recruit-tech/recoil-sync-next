@@ -4,16 +4,16 @@ import { ReactNode } from 'react'
 import { act } from 'react-dom/test-utils'
 import { RecoilRoot, useRecoilState, useRecoilValue } from 'recoil'
 
-import { atomFamilyWithInitialValue } from './atomFamilyWithInitialValue'
+import { initializableAtomFamily } from './initializableAtomFamily'
 
 let atomIndex = 0
-const nextKey = () => `atomFamilyWithInitialValue/test/${atomIndex++}`
+const nextKey = () => `initializableAtomFamily/test/${atomIndex++}`
 
-const testStringState = atomFamilyWithInitialValue<string, string>({
+const testStringState = initializableAtomFamily<string, string>({
   key: nextKey(),
 })
 
-const testNumberState = atomFamilyWithInitialValue<number, string>({
+const testNumberState = initializableAtomFamily<number, string>({
   key: nextKey(),
 })
 
@@ -21,7 +21,7 @@ const App: React.FC<{ children: ReactNode }> = ({ children }) => (
   <RecoilRoot>{children}</RecoilRoot>
 )
 
-describe('atomFamilyWithInitialValue', () => {
+describe('initializableAtomFamily', () => {
   describe('just hook', () => {
     describe('single state', () => {
       it('should be initialized with a specific value', async () => {

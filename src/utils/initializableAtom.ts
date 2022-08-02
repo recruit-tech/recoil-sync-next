@@ -6,7 +6,7 @@ import {
   AtomOptions,
 } from 'recoil'
 
-export function atomWithInitialValue<T extends SerializableParam>(
+export function initializableAtom<T extends SerializableParam>(
   options: Omit<AtomOptions<T>, 'default'>
 ): (initialValue: T) => RecoilState<T> {
   const baseAtom: RecoilState<T> = atom<T>({
