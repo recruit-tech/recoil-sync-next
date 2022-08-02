@@ -37,10 +37,13 @@
     "lint-fix:ex": "run-s -c lint-fix:ex:*",
     "lint-fix:ex:eslint": "CMD=lint-fix:eslint run-s -c run-ex:*",
     "lint-fix:ex:prettier": "CMD=lint-fix:prettier run-s -c run-ex:*",
+    "local-copy": "CMD=local-copy run-s -c run-ex:*",
     "test": "jest",
     "prepare": "simple-git-hooks",
     "run-ex:history-sync-json": "yarn --cwd examples/history-sync-json run $CMD",
-    "run-ex:url-sync-json": "yarn --cwd examples/url-sync-json run $CMD"
+    "run-ex:history-sync-transit": "yarn --cwd examples/history-sync-transit run $CMD",
+    "run-ex:url-sync-json": "yarn --cwd examples/url-sync-json run $CMD",
+    "run-ex:url-sync-transit": "yarn --cwd examples/url-sync-transit run $CMD"
   },
   "simple-git-hooks": {
     "pre-commit": "yarn run lint:lib:eslint && yarn run lint:ex:eslint && yarn run test"

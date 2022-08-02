@@ -1,11 +1,11 @@
 import { number } from '@recoiljs/refine'
 import { useRecoilState } from 'recoil'
 import { syncEffect } from 'recoil-sync'
-import { atomFamilyWithInitialValue } from 'recoil-sync-next'
+import { initializableAtomFamily } from 'recoil-sync-next'
 
 import styles from './index.module.css'
 
-export const counter = atomFamilyWithInitialValue<number, string>({
+export const counter = initializableAtomFamily<number, string>({
   key: 'counterState',
   effects: [syncEffect({ refine: number() })],
 })
