@@ -1,11 +1,11 @@
 import { string } from '@recoiljs/refine'
 import { useRecoilState } from 'recoil'
 import { syncEffect } from 'recoil-sync'
-import { atomWithInitialValue } from 'recoil-sync-next'
+import { initializableAtom } from 'recoil-sync-next'
 
 import styles from './index.module.css'
 
-export const textState = atomWithInitialValue<string>({
+export const textState = initializableAtom<string>({
   key: 'textState',
   effects: [syncEffect({ refine: string() })],
 })

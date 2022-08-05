@@ -12,7 +12,7 @@ import { act } from 'react-dom/test-utils'
 import { atom, atomFamily, RecoilRoot, useRecoilState } from 'recoil'
 import { syncEffect } from 'recoil-sync'
 
-import { atomFamilyWithInitialValue } from '../utils/atomFamilyWithInitialValue'
+import { initializableAtomFamily } from '../utils/initializableAtomFamily'
 
 import { RecoilHistorySyncJSONNext } from './RecoilHistorySyncJSONNext'
 
@@ -235,8 +235,8 @@ describe('<RecoilHistorySyncJSONNext />', () => {
     })
   })
 
-  describe('use atomFamilyWithInitialValue()', () => {
-    const testStringState = atomFamilyWithInitialValue<string, string>({
+  describe('use initializableAtomFamily()', () => {
+    const testStringState = initializableAtomFamily<string, string>({
       key: nextKey(),
       effects: [syncEffect({ refine: string() })],
     })

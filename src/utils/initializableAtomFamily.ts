@@ -6,7 +6,7 @@ import {
   AtomFamilyOptions,
 } from 'recoil'
 
-export function atomFamilyWithInitialValue<
+export function initializableAtomFamily<
   T extends SerializableParam,
   P extends SerializableParam
 >(
