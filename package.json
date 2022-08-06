@@ -69,7 +69,7 @@
     "@types/transit-js": "0.8.0",
     "@typescript-eslint/eslint-plugin": "5.31.0",
     "@typescript-eslint/parser": "5.31.0",
-    "eslint": "8.20.0",
+    "eslint": "8.21.0",
     "eslint-config-next": "12.2.4",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-import": "2.26.0",
