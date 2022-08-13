@@ -83,7 +83,7 @@
     "prettier": "2.7.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "recoil": "0.7.4",
+    "recoil": "0.7.5",
     "recoil-sync": "0.1.0",
     "simple-git-hooks": "2.8.0",
     "transit-js": "0.8.874",
