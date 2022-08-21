@@ -217,9 +217,9 @@ describe('<RecoilHistorySyncTransitNext />', () => {
     })
 
     describe('Set', () => {
-      const set1 = new Set<string>(['Foo'])
-      const set2 = new Set<string>(['Bar', 'Baz'])
-      const testState = atom<Set<string>>({
+      const set1: ReadonlySet<string> = new Set(['Foo'])
+      const set2: ReadonlySet<string> = new Set(['Bar', 'Baz'])
+      const testState = atom<ReadonlySet<string>>({
         key: nextKey(),
         default: set1,
         effects: [syncEffect({ refine: set(string()) })],
@@ -309,12 +309,12 @@ describe('<RecoilHistorySyncTransitNext />', () => {
     })
 
     describe('Map', () => {
-      const map1 = new Map<string, string>([['foo', 'Foo']])
-      const map2 = new Map<string, string>([
+      const map1: ReadonlyMap<string, string> = new Map([['foo', 'Foo']])
+      const map2: ReadonlyMap<string, string> = new Map([
         ['bar', 'Bar'],
         ['baz', 'Baz'],
       ])
-      const testState = atom<Map<string, string>>({
+      const testState = atom<ReadonlyMap<string, string>>({
         key: nextKey(),
         default: map1,
         effects: [syncEffect({ refine: map(string(), string()) })],
