@@ -719,12 +719,7 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@recoiljs/refine@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@recoiljs/refine/-/refine-0.1.0.tgz#915a60801334b11bf4245231b734e31bab39bcda"
-  integrity sha512-5f5ohe6Fc24tW4esoEgCBl+E4qUe/C1nJUAhkt+2xQ3//OCkvpsQ/YrPY6B+DHjoKsrfO0RLekxSQcUlWz2UUA==
-
-"@recoiljs/refine@^0.1.1":
+"@recoiljs/refine@0.1.1", "@recoiljs/refine@^0.1.1":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@recoiljs/refine/-/refine-0.1.1.tgz#282a1cc603bac7db08eea571bbee757f9cf7b55c"
   integrity sha512-ry02rHswJePYkH1o8K99qL4O6TBntF9/g7W5wXVwaOUrIJEZUGfl/I3+btPXbUgyyEZvNs5xcwvOw13AufmFQw==
@@ -3849,7 +3844,7 @@ read-pkg@^3.0.0:
     normalize-package-data "^2.3.2"
     path-type "^3.0.0"
 
-recoil-sync@^0.1.1:
+recoil-sync@0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/recoil-sync/-/recoil-sync-0.1.1.tgz#c20df122077b45c7b3dba9ed30f7f03b15f8b79c"
   integrity sha512-+ZVMT4sLIyUFif7EeIlJjOLdiMarF3M0E9uJWQG9vK5yoFLrXzY8qR0fzIH36ofOwpPUmX4fw90YkV29X3Ts+w==
