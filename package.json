@@ -43,7 +43,8 @@
     "run-ex:history-sync-json": "yarn --cwd examples/history-sync-json run $CMD",
     "run-ex:history-sync-transit": "yarn --cwd examples/history-sync-transit run $CMD",
     "run-ex:url-sync-json": "yarn --cwd examples/url-sync-json run $CMD",
-    "run-ex:url-sync-transit": "yarn --cwd examples/url-sync-transit run $CMD"
+    "run-ex:url-sync-transit": "yarn --cwd examples/url-sync-transit run $CMD",
+    "run-ex:react-hook-from": "yarn --cwd examples/react-hook-form run $CMD"
   },
   "simple-git-hooks": {
     "pre-commit": "yarn run lint:lib:eslint && yarn run lint:ex:eslint && yarn run test"
