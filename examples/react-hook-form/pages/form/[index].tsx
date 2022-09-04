@@ -1,47 +1,40 @@
-import { string } from '@recoiljs/refine'
+import { object, string } from '@recoiljs/refine'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useForm } from 'react-hook-form'
 import { SubmitHandler } from 'react-hook-form/dist/types/form'
-import { atom, useRecoilState } from 'recoil'
 import { syncEffect } from 'recoil-sync'
+import { initializableAtom } from 'recoil-sync-next'
+import { useFormSync } from '../../src/hooks/useFormSync'
 import styles from '../../styles/form.module.css'
 
 import type { NextPage } from 'next'
 
-const nameState = atom({
-  key: 'nameState',
-  default: '',
-  effects: [syncEffect({ refine: string() })],
-})
-
-const commentState = atom({
-  key: 'commentState',
-  default: '',
-  effects: [syncEffect({ refine: string() })],
-})
-
-type FormData = {
+type FormState = {
   name: string
   comment: string
 }
 
-const Form: NextPage = () => {
-  // Every time recoil state is updated, rendering is called,
-  // but no DOM update is made if it is kept to un-controlling components.
-  const [name, setName] = useRecoilState(nameState)
-  const [comment, setComment] = useRecoilState(commentState)
+const formState = initializableAtom<FormState>({
+  key: 'formState',
+  effects: [
+    syncEffect({
+      refine: object({
+        name: string(),
+        comment: string(),
+      }),
+    }),
+  ],
+})
 
-  // form
+const Form: NextPage = () => {
+  // check render
+  console.log('Form: re render')
+
+  const { register, onChangeForm, handleSubmit } = useFormSync(
+    formState({ name: 'a', comment: 'b' })
+  )
   const router = useRouter()
-  const { handleSubmit, register } = useForm<FormData>({
-    mode: 'onBlur',
-    defaultValues: {
-      name,
-      comment,
-    },
-  })
-  const onSubmit: SubmitHandler<FormData> = async (data) => {
+  const onSubmit: SubmitHandler<FormState> = async (data) => {
     console.log('submit data', data)
     await router.push('/form/success')
   }
@@ -56,23 +49,15 @@ const Form: NextPage = () => {
       <main className={styles.main}>
         <h1 className={styles.title}>Form</h1>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} onChange={onChangeForm}>
           <dl className={styles.formList}>
             <dt>name</dt>
             <dd>
-              <input
-                type="text"
-                {...register('name')}
-                onChange={(e) => setName(e.target.value)}
-              />
+              <input type="text" {...register('name')} />
             </dd>
             <dt>comment</dt>
             <dd>
-              <input
-                type="text"
-                {...register('comment')}
-                onChange={(e) => setComment(e.target.value)}
-              />
+              <input type="text" {...register('comment')} />
             </dd>
           </dl>
           <button>submit</button>
