@@ -26,10 +26,10 @@ export function useFormSync<TFieldValues extends FieldValues, TContext = any>(
     ({ snapshot }) =>
       () => {
         const formLoadable = snapshot.getLoadable(formState)
-        if (formLoadable.state === 'hasValue') {
-          return formLoadable.contents
+        if (formLoadable.state !== 'hasValue') {
+          throw new Error('useFormSync: not support async state.')
         }
-        throw new Error('useFormSync: not support async state.')
+        return formLoadable.contents
       },
     []
   )
