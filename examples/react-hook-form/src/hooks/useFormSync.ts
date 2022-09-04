@@ -14,25 +14,26 @@ import {
 } from 'recoil'
 
 type UseFormSyncReturn<
-  TFieldValues extends FieldValues = FieldValues,
+  TFieldValues extends FieldValues,
   TContext = any
 > = UseFormReturn<TFieldValues, TContext> & { onChangeForm: () => void }
 
-export function useFormSync<
-  TFieldValues extends FieldValues = FieldValues,
-  TContext = any
->(
+export function useFormSync<TFieldValues extends FieldValues, TContext = any>(
   formState: RecoilState<TFieldValues>,
   props?: Omit<UseFormProps<TFieldValues, TContext>, 'defaultValues'>
-): UseFormSyncReturn<TFieldValues> {
+): UseFormSyncReturn<TFieldValues, TContext> {
   const getDefaultValues = useRecoilCallback(
     ({ snapshot }) =>
       () => {
-        return snapshot.getLoadable(formState).contents
+        const formLoadable = snapshot.getLoadable(formState)
+        if (formLoadable.state === 'hasValue') {
+          return formLoadable.contents
+        }
+        throw new Error('useFormSync: not support async state.')
       },
     []
   )
-  const defaultValuesRef = useRef<DeepPartial<TFieldValues>>()
+  const defaultValuesRef = useRef<TFieldValues>()
   defaultValuesRef.current ??= getDefaultValues()
 
   const {
@@ -41,7 +42,9 @@ export function useFormSync<
     ...rest
   } = useForm<TFieldValues, TContext>({
     ...props,
-    defaultValues: defaultValuesRef.current,
+    // `DeepPartial` is expected to be removed in the future
+    // https://github.com/react-hook-form/react-hook-form/issues/8510#issuecomment-1157129666
+    defaultValues: defaultValuesRef.current as DeepPartial<TFieldValues>,
   })
 
   const setFormValues = useSetRecoilState(formState)
