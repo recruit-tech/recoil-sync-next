@@ -1,5 +1,7 @@
 # recoil-sync-next
 
+[![npm version](https://badge.fury.io/js/recoil-sync-next.svg)](https://badge.fury.io/js/recoil-sync-next)
+
 [Recoil Sync](https://recoiljs.org/docs/recoil-sync/introduction) stores for Next.js
 
 ## Features
