@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "inst": "yarn install",
+    "clean-nodemodules": "rm -Rf node_modules yarn.lock",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

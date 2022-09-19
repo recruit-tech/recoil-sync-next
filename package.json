@@ -18,6 +18,8 @@
     "inst": "run-s -c inst:*",
     "inst:lib": "yarn install",
     "inst:ex": "CMD=inst run-s -c run-ex:*",
+    "clean-inst": "run-s clean-nodemodules:ex inst:ex",
+    "clean-nodemodules:ex": "CMD=clean-nodemodules run-s -c run-ex:*",
     "clean": "rm -Rf dist coverage",
     "clean-build": "run-s clean build",
     "build": "run-s -c build:*",
