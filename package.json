@@ -57,7 +57,7 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "recoil": "^0.7.4",
-    "recoil-sync": "^0.1.0",
+    "recoil-sync": "^0.1.0 || ^0.2.0",
     "transit-js": "^0.8.874"
   },
   "devDependencies": {
@@ -87,7 +87,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "recoil": "0.7.6",
-    "recoil-sync": "0.1.1",
+    "recoil-sync": "0.2.0",
     "simple-git-hooks": "2.8.0",
     "transit-js": "0.8.874",
     "ts-jest": "29.0.3",
