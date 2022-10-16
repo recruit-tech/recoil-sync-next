@@ -1,9 +1,11 @@
 import '../styles/globals.css'
-import { RecoilRoot } from 'recoil'
+import { RecoilEnv, RecoilRoot } from 'recoil'
 import { RecoilHistorySyncTransitNext } from 'recoil-sync-next'
 
 import type { AppProps } from 'next/app'
 import { ViewState } from '../src/components/ViewStateForm'
+
+RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
