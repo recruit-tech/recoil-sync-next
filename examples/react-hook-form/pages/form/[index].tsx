@@ -11,6 +11,8 @@ import styles from '../../styles/form.module.css'
 type FormState = {
   name: string
   comment: string
+  radio: string
+  checkbox: readonly string[]
   items: readonly {
     value: string
   }[]
@@ -23,6 +25,8 @@ const formState = initializableAtom<FormState>({
       refine: object({
         name: string(),
         comment: string(),
+        radio: string(),
+        checkbox: array(string()),
         items: array(
           object({
             value: string(),
@@ -33,9 +37,11 @@ const formState = initializableAtom<FormState>({
   ],
 })
 
-const initialState = {
+const initialState: FormState = {
   name: 'a',
   comment: 'b',
+  radio: '1',
+  checkbox: ['1'],
   items: [{ value: '1' }, { value: '2' }],
 }
 
@@ -50,6 +56,7 @@ const Form: NextPage<FormState> = (props) => {
   const {
     control,
     registerWithDefaultValue,
+    registerWithDefaultChecked,
     onChangeForm,
     handleSubmit,
     reset,
@@ -96,6 +103,17 @@ const Form: NextPage<FormState> = (props) => {
                 {fields.map((field, index) => (
                   <li key={field.id}>
                     <span>{index} </span>
+                    <input
+                      type="radio"
+                      {...registerWithDefaultChecked('radio', `${index + 1}`)}
+                    />
+                    <input
+                      type="checkbox"
+                      {...registerWithDefaultChecked(
+                        'checkbox',
+                        `${index + 1}`
+                      )}
+                    />
                     <input
                       {...registerWithDefaultValue(
                         `items.${index}.value` as const

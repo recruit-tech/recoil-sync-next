@@ -1,8 +1,10 @@
 import { useCallback, useRef } from 'react'
 import {
   DeepPartial,
+  FieldPath,
   FieldValues,
   InternalFieldName,
+  RegisterOptions,
   Resolver,
   useFieldArray,
   UseFieldArrayAppend,
@@ -28,18 +30,28 @@ import {
   useSetRecoilState,
 } from 'recoil'
 
+type RegisterWithDefaultChecked<
+  TFieldValues extends FieldValues,
+  TContext = any
+> = <TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>>(
+  name: TFieldName,
+  value: TFieldValues[TFieldName] extends Readonly<Array<infer E>>
+    ? E
+    : TFieldValues[TFieldName],
+  options?: RegisterOptions<TFieldValues, TFieldName>
+) => UseFormRegisterReturn<TFieldName>
+
 type UseFormSyncReturn<
   TFieldValues extends FieldValues,
   TContext = any
 > = UseFormReturn<TFieldValues, TContext> & {
   registerWithDefaultValue: UseFormRegister<TFieldValues>
+  registerWithDefaultChecked: RegisterWithDefaultChecked<TFieldValues, TContext>
   onChangeForm: () => void
   useFieldArraySync: (
     props: UseFieldArrayProps<TFieldValues>
   ) => UseFieldArrayReturn<TFieldValues>
 }
-
-const FIELD_ARRAY_NAME_PATTERN = /([^.]+)\.([0-9]+)\.([^.]+)/
 
 export function useFormSync<TFieldValues extends FieldValues, TContext = any>(
   formState: RecoilState<TFieldValues>,
@@ -59,6 +71,12 @@ export function useFormSync<TFieldValues extends FieldValues, TContext = any>(
   const defaultValuesRef = useRef<TFieldValues>()
   defaultValuesRef.current ??= getDefaultValues()
 
+  const getDefaultValue = (name: string) => {
+    return name
+      .split('.')
+      .reduce((value, segment) => value?.[segment], defaultValuesRef.current!)
+  }
+
   const {
     register,
     getValues,
@@ -73,12 +91,25 @@ export function useFormSync<TFieldValues extends FieldValues, TContext = any>(
 
   const registerWithDefaultValue: UseFormRegister<TFieldValues> = useCallback(
     (name, options) => {
-      const defaultValues = defaultValuesRef.current!
-      const names = FIELD_ARRAY_NAME_PATTERN.exec(name)
-      const defaultValue = names
-        ? defaultValues[names[1]]?.[+names[2]]?.[names[3]]
-        : defaultValues[name]
+      const defaultValue = getDefaultValue(name) ?? null
       return { ...register(name, options), defaultValue }
+    },
+    [register]
+  )
+
+  const registerWithDefaultChecked: RegisterWithDefaultChecked<
+    TFieldValues,
+    TContext
+  > = useCallback(
+    (name, value, options) => {
+      const defaultValue = getDefaultValue(name)
+      const defaultChecked =
+        defaultValue == null
+          ? false
+          : Array.isArray(defaultValue)
+          ? defaultValue.includes(value)
+          : defaultValue === value
+      return { ...register(name, options), value, defaultChecked }
     },
     [register]
   )
@@ -152,6 +183,7 @@ export function useFormSync<TFieldValues extends FieldValues, TContext = any>(
     ...rest,
     register,
     registerWithDefaultValue,
+    registerWithDefaultChecked,
     getValues,
     reset,
     onChangeForm,
