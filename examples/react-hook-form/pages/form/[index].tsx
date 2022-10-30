@@ -11,10 +11,13 @@ import styles from '../../styles/form.module.css'
 type FormState = {
   name: string
   comment: string
-  radio: string
-  checkbox: readonly string[]
+  time: string
+  selectedRadio: string
+  selectedCheckbox: readonly string[]
   items: readonly {
     value: string
+    radio: string
+    checkbox: string
   }[]
 }
 
@@ -25,11 +28,14 @@ const formState = initializableAtom<FormState>({
       refine: object({
         name: string(),
         comment: string(),
-        radio: string(),
-        checkbox: array(string()),
+        time: string(),
+        selectedRadio: string(),
+        selectedCheckbox: array(string()),
         items: array(
           object({
             value: string(),
+            radio: string(),
+            checkbox: string(),
           })
         ),
       }),
@@ -37,17 +43,12 @@ const formState = initializableAtom<FormState>({
   ],
 })
 
-const initialState: FormState = {
-  name: 'a',
-  comment: 'b',
-  radio: '1',
-  checkbox: ['1'],
-  items: [{ value: '1' }, { value: '2' }],
-}
-
-const emptyItem: FormState['items'][number] = {
+let count = 1
+const createNewItem = (): FormState['items'][number] => ({
   value: '',
-}
+  radio: `${count}`,
+  checkbox: `${count++}`,
+})
 
 const Form: NextPage<FormState> = (props) => {
   // check render
@@ -94,9 +95,13 @@ const Form: NextPage<FormState> = (props) => {
             <dd>
               <input type="text" {...registerWithDefaultValue('comment')} />
             </dd>
+            <dt>time</dt>
+            <dd>
+              <input type="text" {...registerWithDefaultValue('time')} />
+            </dd>
             <dt>items</dt>
             <dd>
-              <button type="button" onClick={() => prepend(emptyItem)}>
+              <button type="button" onClick={() => prepend(createNewItem())}>
                 Prepend
               </button>
               <ul>
@@ -105,13 +110,16 @@ const Form: NextPage<FormState> = (props) => {
                     <span>{index} </span>
                     <input
                       type="radio"
-                      {...registerWithDefaultChecked('radio', `${index + 1}`)}
+                      {...registerWithDefaultChecked(
+                        'selectedRadio',
+                        field.radio
+                      )}
                     />
                     <input
                       type="checkbox"
                       {...registerWithDefaultChecked(
-                        'checkbox',
-                        `${index + 1}`
+                        'selectedCheckbox',
+                        field.checkbox
                       )}
                     />
                     <input
@@ -121,13 +129,13 @@ const Form: NextPage<FormState> = (props) => {
                     />
                     <button
                       type="button"
-                      onClick={() => insert(index, emptyItem)}
+                      onClick={() => insert(index, createNewItem())}
                     >
                       Insert before
                     </button>
                     <button
                       type="button"
-                      onClick={() => insert(index + 1, emptyItem)}
+                      onClick={() => insert(index + 1, createNewItem())}
                     >
                       Insert after
                     </button>
@@ -147,7 +155,7 @@ const Form: NextPage<FormState> = (props) => {
                   </li>
                 ))}
               </ul>
-              <button type="button" onClick={() => append(emptyItem)}>
+              <button type="button" onClick={() => append(createNewItem())}>
                 Append
               </button>
             </dd>
@@ -168,6 +176,16 @@ export const getServerSideProps: GetServerSideProps<FormState> = async ({
   params,
 }) => {
   return {
-    props: initialState,
+    props: {
+      name: 'a',
+      comment: 'b',
+      time: new Date().toLocaleTimeString(),
+      selectedRadio: 'A',
+      selectedCheckbox: ['A'],
+      items: [
+        { value: '', radio: 'A', checkbox: 'A' },
+        { value: '', radio: 'B', checkbox: 'B' },
+      ],
+    },
   }
 }
