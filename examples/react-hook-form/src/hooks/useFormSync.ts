@@ -117,7 +117,7 @@ export function useFormSync<TFieldValues extends FieldValues, TContext = any>(
   const resetState = useResetRecoilState(formState)
   const reset = useCallback(() => {
     resetState()
-    resetForm(getDefaultValues())
+    resetForm(structuredClone(getDefaultValues()))
   }, [getDefaultValues, resetForm, resetState])
 
   const setFormValues = useSetRecoilState(formState)
