@@ -294,3 +294,75 @@ const MyComponent: React.FC = () => {
   ...
 }
 ```
+
+### useFormSync
+
+`useFormSync` persists the value of [react-hook-form](https://react-hook-form.com/)'s `useForm` by `recoil-sync-next`.
+
+
+```ts
+type UseFormSyncReturn<
+  TFieldValues extends FieldValues,
+  TContext = any
+> = UseFormReturn<TFieldValues, TContext> & {
+  registerWithDefaultValue: UseFormRegister<TFieldValues>
+  registerWithDefaultChecked: RegisterWithDefaultChecked<TFieldValues, TContext>
+  onChangeForm: () => void
+  useFieldArraySync: (
+    props: UseFieldArrayProps<TFieldValues>
+  ) => UseFieldArrayReturn<TFieldValues>
+}
+
+function useFormSync<TFieldValues extends FieldValues, TContext = any>(
+  formState: RecoilState<TFieldValues>,
+  props?: Omit<UseFormProps<TFieldValues, TContext>, 'defaultValues'>
+): UseFormSyncReturn<TFieldValues, TContext>
+```
+
+#### Parameters
+
+- `formState`
+  - This is `RecoilState` to hold as form.
+- `props`
+  - Arguments of `useForm` of RHF without `defaultValues`.
+
+#### Return
+
+Many parts are the same as react-hook-form's `useForm`.
+
+- `registerWithDefaultValue`
+  - It is an alternative to `register` use default values.
+- `registerWithDefaultChecked`
+  - It is an alternative to `register` use checked values.
+- `onChangeForm`
+  - This is what tells `recoil-sync-next` to change the form.
+- `useFieldArraySync`
+  - It is an alternative to `useFieldArray`.
+
+#### Example
+
+```ts
+const formState = initializableAtom<FormState>({
+  key: 'formState',
+  effects: [
+    syncEffect({
+      refine: object({
+        name: string(),
+    }),
+  ],
+})
+
+const {
+  control,
+  registerWithDefaultValue,
+  registerWithDefaultChecked,
+  onChangeForm,
+  handleSubmit,
+  reset,
+  useFieldArraySync,
+} = useFormSync(
+  formState({
+    name: 'initial name',
+  })
+)
+```

@@ -56,15 +56,22 @@
     "next": "^12.2.0 || ^13.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-hook-form": "^7.38.0",
     "recoil": "^0.7.4",
     "recoil-sync": "^0.1.0 || ^0.2.0",
     "transit-js": "^0.8.874"
+  },
+  "peerDependenciesMeta": {
+    "react-hook-form": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@jest/types": "29.2.1",
     "@recoiljs/refine": "0.1.1",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "13.4.0",
+    "@testing-library/user-event": "14.4.3",
     "@types/jest": "29.2.0",
     "@types/node": "18.11.7",
     "@types/react": "18.0.24",
@@ -86,6 +93,7 @@
     "prettier": "2.7.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "7.38.0",
     "recoil": "0.7.6",
     "recoil-sync": "0.2.0",
     "simple-git-hooks": "2.8.1",

@@ -1,5 +1,6 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { SubmitHandler } from 'react-hook-form/dist/types/form'
 import { syncEffect } from 'recoil-sync'
@@ -164,6 +165,9 @@ const Form: NextPage<FormState> = (props) => {
           <button type="button" onClick={() => reset()}>
             Reset
           </button>
+          <div>
+            link: <Link href="/form/2">2</Link>
+          </div>
         </form>
       </main>
     </div>
