@@ -14,7 +14,17 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>Top page</h1>
-        <Link href="/form/1">form</Link>
+        <div>
+          <div>
+            <Link href="/form/1">Form[1]</Link>
+          </div>
+          <div>
+            <Link href="/form/2">Form[2]</Link>
+          </div>
+          <div>
+            <Link href="/form/3">Form[3]</Link>
+          </div>
+        </div>
       </main>
     </div>
   )

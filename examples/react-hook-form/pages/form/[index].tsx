@@ -1,10 +1,12 @@
+import { useEffect, useRef } from 'react'
 import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { SubmitHandler } from 'react-hook-form/dist/types/form'
 import { syncEffect } from 'recoil-sync'
 import { array, object, string } from '@recoiljs/refine'
-import { initializableAtom } from 'recoil-sync-next'
+import { initializableAtom, initializableAtomFamily } from 'recoil-sync-next'
 import { useFormSync } from '../../src/hooks/useFormSync'
 import styles from '../../styles/form.module.css'
 
@@ -15,13 +17,13 @@ type FormState = {
   selectedRadio: string
   selectedCheckbox: readonly string[]
   items: readonly {
-    value: string
     radio: string
     checkbox: string
+    text: string
   }[]
 }
 
-const formState = initializableAtom<FormState>({
+const formState = initializableAtomFamily<FormState, string>({
   key: 'formState',
   effects: [
     syncEffect({
@@ -33,9 +35,9 @@ const formState = initializableAtom<FormState>({
         selectedCheckbox: array(string()),
         items: array(
           object({
-            value: string(),
             radio: string(),
             checkbox: string(),
+            text: string(),
           })
         ),
       }),
@@ -43,16 +45,27 @@ const formState = initializableAtom<FormState>({
   ],
 })
 
+type PageProps = {
+  index: string
+  defaultValues: FormState
+}
+
 let count = 1
 const createNewItem = (): FormState['items'][number] => ({
-  value: '',
   radio: `${count}`,
   checkbox: `${count++}`,
+  text: '',
 })
 
-const Form: NextPage<FormState> = (props) => {
+const Form: NextPage<PageProps> = ({ index, defaultValues }) => {
   // check render
-  console.log('Form: re render')
+  const renderRef = useRef(true)
+  if (renderRef.current) {
+    renderRef.current = false
+    console.log(`Form[${index}]: initial render`)
+  } else {
+    console.log(`Form[${index}]: re render`)
+  }
 
   const {
     control,
@@ -61,13 +74,27 @@ const Form: NextPage<FormState> = (props) => {
     onChangeForm,
     handleSubmit,
     reset,
+    resetFormOnly,
     useFieldArraySync,
-  } = useFormSync<FormState>(formState(props))
+  } = useFormSync<FormState>(formState(index, defaultValues))
   const { fields, append, prepend, remove, swap, move, insert } =
     useFieldArraySync({
       control,
       name: 'items',
     })
+
+  /*
+   * Next.js dynamic routes does not unmount page components
+   * when only slugs are changed (just re-rendering).
+   * Therefore, uncontrolled input elements are not updated
+   * from the previous page (i.e. slug).
+   * To solve this problem, when slugs ('index' in this case) change,
+   * reset the RHF form state to reflect the Recoil state.
+   * Unlike reset(), resetFormOnly() doesn't reset the Recoil state.
+   */
+  useEffect(() => {
+    resetFormOnly()
+  }, [index, resetFormOnly])
 
   const router = useRouter()
   const onSubmit: SubmitHandler<FormState> = async (data) => {
@@ -78,12 +105,12 @@ const Form: NextPage<FormState> = (props) => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Form</title>
+        <title>Form[{index}]</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Form</h1>
+        <h1 className={styles.title}>Form[{index}]</h1>
 
         <form onSubmit={handleSubmit(onSubmit)} onChange={onChangeForm}>
           <dl className={styles.formList}>
@@ -124,7 +151,7 @@ const Form: NextPage<FormState> = (props) => {
                     />
                     <input
                       {...registerWithDefaultValue(
-                        `items.${index}.value` as const
+                        `items.${index}.text` as const
                       )}
                     />
                     <button
@@ -160,11 +187,41 @@ const Form: NextPage<FormState> = (props) => {
               </button>
             </dd>
           </dl>
-          <button>Submit</button>
-          <button type="button" onClick={() => reset()}>
-            Reset
-          </button>
+          <div>
+            <button>Submit</button>
+          </div>
+          <div>
+            <button type="button" onClick={() => reset()}>
+              Reset (to Default Values)
+            </button>
+            <button
+              type="button"
+              onClick={() =>
+                reset({
+                  name: '',
+                  comment: '',
+                  time: '',
+                  selectedRadio: '',
+                  selectedCheckbox: [],
+                  items: [],
+                })
+              }
+            >
+              Reset (to Empty Values)
+            </button>
+          </div>
         </form>
+        <div>
+          <div>
+            <Link href="/form/1">Form[1]</Link>
+          </div>
+          <div>
+            <Link href="/form/2">Form[2]</Link>
+          </div>
+          <div>
+            <Link href="/form/3">Form[3]</Link>
+          </div>
+        </div>
       </main>
     </div>
   )
@@ -172,20 +229,32 @@ const Form: NextPage<FormState> = (props) => {
 
 export default Form
 
-export const getServerSideProps: GetServerSideProps<FormState> = async ({
+export const getServerSideProps: GetServerSideProps<PageProps> = async ({
   params,
 }) => {
+  console.log(`Form[${params?.index}]: executing gSSP`)
   return {
     props: {
-      name: 'a',
-      comment: 'b',
-      time: new Date().toLocaleTimeString(),
-      selectedRadio: 'A',
-      selectedCheckbox: ['A'],
-      items: [
-        { value: '', radio: 'A', checkbox: 'A' },
-        { value: '', radio: 'B', checkbox: 'B' },
-      ],
+      index: params?.index as string,
+      defaultValues: {
+        name: 'a',
+        comment: 'b',
+        time: new Date().toLocaleTimeString(),
+        selectedRadio: 'A',
+        selectedCheckbox: ['A'],
+        items: [
+          {
+            radio: 'A',
+            checkbox: 'A',
+            text: '',
+          },
+          {
+            radio: 'B',
+            checkbox: 'B',
+            text: '',
+          },
+        ],
+      },
     },
   }
 }
