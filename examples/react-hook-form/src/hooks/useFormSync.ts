@@ -3,10 +3,8 @@ import {
   DeepPartial,
   FieldPath,
   FieldValues,
-  InternalFieldName,
   KeepStateOptions,
   RegisterOptions,
-  Resolver,
   useFieldArray,
   UseFieldArrayAppend,
   UseFieldArrayInsert,
@@ -32,7 +30,7 @@ import {
   useSetRecoilState,
 } from 'recoil'
 
-type RegisterWithDefaultChecked<
+export type RegisterWithDefaultChecked<
   TFieldValues extends FieldValues,
   TContext = any
 > = <TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>>(
@@ -43,11 +41,11 @@ type RegisterWithDefaultChecked<
   options?: RegisterOptions<TFieldValues, TFieldName>
 ) => UseFormRegisterReturn<TFieldName>
 
-type ResetFormOnly<TFieldValues extends FieldValues> = (
+export type ResetFormOnly<TFieldValues extends FieldValues> = (
   keepStateOptions?: KeepStateOptions
 ) => void
 
-type UseFormSyncReturn<
+export type UseFormSyncReturn<
   TFieldValues extends FieldValues,
   TContext = any
 > = UseFormReturn<TFieldValues, TContext> & {
