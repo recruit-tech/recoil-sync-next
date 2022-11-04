@@ -8,7 +8,7 @@ type Props = Omit<RecoilURLSyncJSONOptions, 'browserInterface'> & {
 
 export const RecoilURLSyncJSONNext: React.FC<Props> = ({
   children,
-  shallow,
+  shallow = true,
   ...options
 }) => {
   const { browserInterface, ...defaultOptions } = useSyncURLNext({ shallow })
