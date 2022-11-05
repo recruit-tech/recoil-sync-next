@@ -2,13 +2,9 @@ import { useRouter } from 'next/router'
 import { useCallback, useEffect, useRef } from 'react'
 import { BrowserInterface, RecoilURLSyncOptions } from 'recoil-sync'
 
-interface Props {
-  shallow?: boolean
-}
-
-export function useSyncURLNext({
-  shallow,
-}: Props): Partial<Omit<RecoilURLSyncOptions, 'children'>> {
+export function useSyncURLNext(): Partial<
+  Omit<RecoilURLSyncOptions, 'children'>
+> {
   const { isReady, asPath, replace, push, events } = useRouter()
 
   const urlRef = useRef<{
@@ -36,13 +32,13 @@ export function useSyncURLNext({
 
   const browserInterface: BrowserInterface = {
     replaceURL: useCallback(
-      (url: string) => replace(url, undefined, { shallow }),
-      [replace, shallow]
+      (url: string) => replace(url, undefined, { shallow: true }),
+      [replace]
     ),
 
     pushURL: useCallback(
-      (url: string) => push(url, undefined, { shallow }),
-      [push, shallow]
+      (url: string) => push(url, undefined, { shallow: true }),
+      [push]
     ),
 
     getURL: useCallback(() => {

@@ -2,16 +2,13 @@ import { RecoilURLSyncJSON, RecoilURLSyncJSONOptions } from 'recoil-sync'
 
 import { useSyncURLNext } from './useSyncURLNext'
 
-type Props = Omit<RecoilURLSyncJSONOptions, 'browserInterface'> & {
-  shallow?: boolean
-}
+type Props = Omit<RecoilURLSyncJSONOptions, 'browserInterface'>
 
 export const RecoilURLSyncJSONNext: React.FC<Props> = ({
   children,
-  shallow = true,
   ...options
 }) => {
-  const { browserInterface, ...defaultOptions } = useSyncURLNext({ shallow })
+  const { browserInterface, ...defaultOptions } = useSyncURLNext()
 
   return (
     <RecoilURLSyncJSON
