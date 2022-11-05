@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import { SubmitHandler } from 'react-hook-form/dist/types/form'
 import { syncEffect } from 'recoil-sync'
 import { array, object, string } from '@recoiljs/refine'
-import { initializableAtom, initializableAtomFamily } from 'recoil-sync-next'
+import { initializableAtomFamily } from 'recoil-sync-next'
 import { useFormSync } from '../../src/hooks/useFormSync'
 import styles from '../../styles/form.module.css'
 
@@ -211,6 +211,7 @@ const Form: NextPage<PageProps> = ({ index, defaultValues }) => {
             </button>
           </div>
         </form>
+        <h2>Form</h2>
         <div>
           <div>
             <Link href="/form/1">Form[1]</Link>
@@ -220,6 +221,12 @@ const Form: NextPage<PageProps> = ({ index, defaultValues }) => {
           </div>
           <div>
             <Link href="/form/3">Form[3]</Link>
+          </div>
+        </div>
+        <h2>ContextForm</h2>
+        <div>
+          <div>
+            <Link href="/form/context">ContextForm</Link>
           </div>
         </div>
       </main>
