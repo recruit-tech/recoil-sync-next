@@ -49,8 +49,6 @@ function RecoilURLSyncJSONNext(props: {
 - `location`
   - Tis prop specifies what part of the URL to sync.
     See [URL Location](https://recoiljs.org/docs/recoil-sync/api/RecoilURLSync#url-location) for more info.
-- `shallow`
-  - This prop specifies whether or not to use shallow routing. See [shallow routing](https://nextjs.org/docs/routing/shallow-routing) for more details.
 - `children`
   - React elements in your component tree.
 
@@ -93,8 +91,6 @@ function RecoilURLSyncTransitNext(props: {
 - `location`
   - Tis prop specifies what part of the URL to sync.
     See [URL Location](https://recoiljs.org/docs/recoil-sync/api/RecoilURLSync#url-location) for more info.
-- `shallow`
-  - This prop specifies whether or not to use shallow routing. See [shallow routing](https://nextjs.org/docs/routing/shallow-routing) for more details.
 - `handlers`
   - The array of user defined custom encoder/decoder object.
     See [Custom Classes](https://recoiljs.org/docs/recoil-sync/api/RecoilURLSyncTransit#custom-classes) for more info.
