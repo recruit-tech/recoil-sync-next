@@ -211,7 +211,6 @@ const Form: NextPage<PageProps> = ({ index, defaultValues }) => {
             </button>
           </div>
         </form>
-        <h2>Form</h2>
         <div>
           <div>
             <Link href="/form/1">Form[1]</Link>
@@ -221,12 +220,6 @@ const Form: NextPage<PageProps> = ({ index, defaultValues }) => {
           </div>
           <div>
             <Link href="/form/3">Form[3]</Link>
-          </div>
-        </div>
-        <h2>ContextForm</h2>
-        <div>
-          <div>
-            <Link href="/form/context">ContextForm</Link>
           </div>
         </div>
       </main>
