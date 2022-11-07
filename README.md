@@ -4,6 +4,10 @@
 
 [Recoil Sync](https://recoiljs.org/docs/recoil-sync/introduction) stores for Next.js
 
+## Caution
+
+**The new router for the `app/` directory introduced by Next.js 13 is not yet supported.**
+
 ## Features
 
 - [URL Persistence](#url-persistence)
