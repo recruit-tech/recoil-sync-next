@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import Router from 'next/router'
 import { SubmitHandler } from 'react-hook-form/dist/types/form'
 import { syncEffect } from 'recoil-sync'
 import { array, object, string } from '@recoiljs/refine'
@@ -24,9 +24,10 @@ type FormState = {
 }
 
 const formState = initializableAtomFamily<FormState, string>({
-  key: 'formState',
+  key: 'historyFormState',
   effects: [
     syncEffect({
+      storeKey: 'history-store',
       refine: object({
         name: string(),
         comment: string(),
@@ -57,14 +58,14 @@ const createNewItem = (): FormState['items'][number] => ({
   text: '',
 })
 
-const Form: NextPage<PageProps> = ({ index, defaultValues }) => {
+const HistoryForm: NextPage<PageProps> = ({ index, defaultValues }) => {
   // check render
   const renderRef = useRef(true)
   if (renderRef.current) {
     renderRef.current = false
-    console.log(`Form[${index}]: initial render`)
+    console.log(`HistoryForm[${index}]: initial render`)
   } else {
-    console.log(`Form[${index}]: re render`)
+    console.log(`HistoryForm[${index}]: re render`)
   }
 
   const {
@@ -96,21 +97,20 @@ const Form: NextPage<PageProps> = ({ index, defaultValues }) => {
     resetFormOnly()
   }, [index, resetFormOnly])
 
-  const router = useRouter()
   const onSubmit: SubmitHandler<FormState> = async (data) => {
     console.log('submit data', data)
-    await router.push('/form/success')
+    await Router.push('/history-form/success')
   }
 
   return (
     <div className={styles.container}>
       <Head>
-        <title>Form[{index}]</title>
+        <title>HistoryForm[{index}]</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Form[{index}]</h1>
+        <h1 className={styles.title}>HistoryForm[{index}]</h1>
 
         <form onSubmit={handleSubmit(onSubmit)} onChange={onChangeForm}>
           <dl className={styles.formList}>
@@ -213,13 +213,13 @@ const Form: NextPage<PageProps> = ({ index, defaultValues }) => {
         </form>
         <div>
           <div>
-            <Link href="/form/1">Form[1]</Link>
+            <Link href="/history-form/1">Form[1]</Link>
           </div>
           <div>
-            <Link href="/form/2">Form[2]</Link>
+            <Link href="/history-form/2">Form[2]</Link>
           </div>
           <div>
-            <Link href="/form/3">Form[3]</Link>
+            <Link href="/history-form/3">Form[3]</Link>
           </div>
         </div>
       </main>
@@ -227,12 +227,12 @@ const Form: NextPage<PageProps> = ({ index, defaultValues }) => {
   )
 }
 
-export default Form
+export default HistoryForm
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async ({
   params,
 }) => {
-  console.log(`Form[${params?.index}]: executing gSSP`)
+  console.log(`HistoryForm[${params?.index}]: executing gSSP`)
   return {
     props: {
       index: params?.index as string,
