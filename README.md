@@ -277,7 +277,7 @@ See [atomFamily](https://recoiljs.org/docs/api-reference/utils/atomFamily) for m
 
 #### Return
 
-A function which takes `paramter` that map to an atom, and its `initialValue`.
+A function which takes `parameter` that map to an atom, and its `initialValue`.
 
 #### Example
 

@@ -31,9 +31,15 @@ export function useSyncURLNext(): Partial<
   }, [])
 
   const browserInterface: BrowserInterface = {
-    replaceURL: useCallback((url: string) => replace(url), [replace]),
+    replaceURL: useCallback(
+      (url: string) => replace(url, undefined, { shallow: true }),
+      [replace]
+    ),
 
-    pushURL: useCallback((url: string) => push(url), [push]),
+    pushURL: useCallback(
+      (url: string) => push(url, undefined, { shallow: true }),
+      [push]
+    ),
 
     getURL: useCallback(() => {
       const url = new URL(
