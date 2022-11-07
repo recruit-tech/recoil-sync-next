@@ -16,13 +16,13 @@ const SubmitSuccess: NextPage = () => {
         <h1 className={styles.title}>Submit success!!!</h1>
         <div>
           <div>
-            <Link href="/form/1">Form[1]</Link>
+            <Link href="/url-form/1">Form[1]</Link>
           </div>
           <div>
-            <Link href="/form/2">Form[2]</Link>
+            <Link href="/url-form/2">Form[2]</Link>
           </div>
           <div>
-            <Link href="/form/3">Form[3]</Link>
+            <Link href="/url-form/3">Form[3]</Link>
           </div>
         </div>
       </main>
