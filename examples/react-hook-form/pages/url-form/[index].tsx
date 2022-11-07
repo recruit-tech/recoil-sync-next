@@ -6,10 +6,7 @@ import Router from 'next/router'
 import { SubmitHandler } from 'react-hook-form/dist/types/form'
 import { syncEffect } from 'recoil-sync'
 import { array, object, string } from '@recoiljs/refine'
-import {
-  initializableAtomFamily,
-  RecoilURLSyncJSONNext,
-} from 'recoil-sync-next'
+import { initializableAtomFamily } from 'recoil-sync-next'
 import { useFormSync } from '../../src/hooks/useFormSync'
 import styles from '../../styles/form.module.css'
 
