@@ -1,4 +1,4 @@
-import { memo, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import Router from 'next/router'
@@ -8,6 +8,10 @@ import { array, object, string } from '@recoiljs/refine'
 import { initializableAtomFamily } from 'recoil-sync-next'
 import { Links } from '../../src/components/Links'
 import { useFormSync } from '../../src/hooks/useFormSync'
+import {
+  FormSyncProvider,
+  useFormSyncContext,
+} from '../../src/hooks/useFormSyncContext'
 import styles from '../../styles/form.module.css'
 
 type FormState = {
@@ -24,10 +28,10 @@ type FormState = {
 }
 
 const formState = initializableAtomFamily<FormState, string>({
-  key: 'urlFormState',
+  key: 'historyFormState',
   effects: [
     syncEffect({
-      storeKey: 'url-store',
+      storeKey: 'history-store',
       refine: object({
         name: string(),
         comment: string(),
@@ -58,31 +62,18 @@ const createNewItem = (): FormState['items'][number] => ({
   text: '',
 })
 
-const URLForm: NextPage<PageProps> = ({ index, defaultValues }) => {
+const HistoryFormContext: NextPage<PageProps> = ({ index, defaultValues }) => {
   // check render
   const renderRef = useRef(true)
   if (renderRef.current) {
     renderRef.current = false
-    console.log(`URLForm[${index}]: initial render`)
+    console.log(`HistoryForm[${index}]: initial render`)
   } else {
-    console.log(`URLForm[${index}]: re render`)
+    console.log(`HistoryForm[${index}]: re render`)
   }
 
-  const {
-    control,
-    registerWithDefaultValue,
-    registerWithDefaultChecked,
-    onChangeForm,
-    handleSubmit,
-    reset,
-    resetFormOnly,
-    useFieldArraySync,
-  } = useFormSync<FormState>(formState(index, defaultValues))
-  const { fields, append, prepend, remove, swap, move, insert } =
-    useFieldArraySync({
-      control,
-      name: 'items',
-    })
+  const methods = useFormSync<FormState>(formState(index, defaultValues))
+  const { resetFormOnly } = methods
 
   /*
    * Next.js dynamic routes does not unmount page components
@@ -97,6 +88,32 @@ const URLForm: NextPage<PageProps> = ({ index, defaultValues }) => {
     resetFormOnly()
   }, [index, resetFormOnly])
 
+  return (
+    <FormSyncProvider {...methods}>
+      <HistoryFormChild index={index} defaultValues={defaultValues} />
+    </FormSyncProvider>
+  )
+}
+
+export default HistoryFormContext
+
+const HistoryFormChild: React.FC<PageProps> = ({ index, defaultValues }) => {
+  const {
+    control,
+    registerWithDefaultValue,
+    registerWithDefaultChecked,
+    onChangeForm,
+    handleSubmit,
+    reset,
+    resetFormOnly,
+    useFieldArraySync,
+  } = useFormSyncContext<FormState>()
+  const { fields, append, prepend, remove, swap, move, insert } =
+    useFieldArraySync({
+      control,
+      name: 'items',
+    })
+
   const onSubmit: SubmitHandler<FormState> = async (data) => {
     console.log('submit data', data)
     await Router.push('/success')
@@ -105,12 +122,12 @@ const URLForm: NextPage<PageProps> = ({ index, defaultValues }) => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>URLForm[{index}]</title>
+        <title>FormContext[{index}]</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>URLForm[{index}]</h1>
+        <h1 className={styles.title}>FormContext[{index}]</h1>
 
         <form onSubmit={handleSubmit(onSubmit)} onChange={onChangeForm}>
           <dl className={styles.formList}>
@@ -217,12 +234,10 @@ const URLForm: NextPage<PageProps> = ({ index, defaultValues }) => {
   )
 }
 
-export default memo(URLForm)
-
 export const getServerSideProps: GetServerSideProps<PageProps> = async ({
   params,
 }) => {
-  console.log(`URLForm[${params?.index}]: executing gSSP`)
+  console.log(`HistoryForm[${params?.index}]: executing gSSP`)
   return {
     props: {
       index: params?.index as string,

@@ -1,8 +1,7 @@
-import Head from 'next/head'
-import Link from 'next/link'
-import styles from '../../styles/common.module.css'
-
 import type { NextPage } from 'next'
+import Head from 'next/head'
+import { Links } from '../src/components/Links'
+import styles from '../styles/common.module.css'
 
 const SubmitSuccess: NextPage = () => {
   return (
@@ -14,17 +13,7 @@ const SubmitSuccess: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>Submit success!!!</h1>
-        <div>
-          <div>
-            <Link href="/url-form/1">Form[1]</Link>
-          </div>
-          <div>
-            <Link href="/url-form/2">Form[2]</Link>
-          </div>
-          <div>
-            <Link href="/url-form/3">Form[3]</Link>
-          </div>
-        </div>
+        <Links />
       </main>
     </div>
   )
