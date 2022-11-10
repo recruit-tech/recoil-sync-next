@@ -31,6 +31,17 @@ pnpm add recoil recoil-sync recoil-sync-next
 This provides recoil-sync's [URL Persistence](https://recoiljs.org/docs/recoil-sync/url-persistence)
 functionality interfaced with [next/router](https://nextjs.org/docs/api-reference/next/router).
 
+### Notes
+
+`<RecoilURLSyncJSON>` and `<RecoilURLSyncTransit>` always use
+[shallow routing](https://nextjs.org/docs/routing/shallow-routing)
+to update the browser URL.
+When the URL has changed, they cause re-rendering of themselves.
+Therefore, you should concider to use `React.memo()`
+for Page components that use URL synced atoms (
+[example](https://github.com/recruit-tech/recoil-sync-next/blob/main/examples/react-hook-form/pages/url-form/[index].tsx)
+).
+
 ### \<RecoilURLSyncJSONNext>
 
 A version of [\<RecoilURLSyncJSON>](https://recoiljs.org/docs/recoil-sync/api/RecoilURLSyncJSON) that works with next/router
