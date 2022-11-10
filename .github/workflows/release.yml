@@ -45,6 +45,6 @@ jobs:
             LICENSE
             package.json
             yarn.lock
-            dist/*
+            dist/**/*
             src/
             tsconfig.json
