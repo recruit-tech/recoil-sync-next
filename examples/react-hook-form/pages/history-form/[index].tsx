@@ -1,12 +1,12 @@
 import { useEffect, useRef } from 'react'
 import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
-import Link from 'next/link'
 import Router from 'next/router'
 import { SubmitHandler } from 'react-hook-form/dist/types/form'
 import { syncEffect } from 'recoil-sync'
 import { array, object, string } from '@recoiljs/refine'
 import { initializableAtomFamily } from 'recoil-sync-next'
+import { Links } from '../../src/components/Links'
 import { useFormSync } from '../../src/hooks/useFormSync'
 import styles from '../../styles/form.module.css'
 
@@ -99,7 +99,7 @@ const HistoryForm: NextPage<PageProps> = ({ index, defaultValues }) => {
 
   const onSubmit: SubmitHandler<FormState> = async (data) => {
     console.log('submit data', data)
-    await Router.push('/history-form/success')
+    await Router.push('/success')
   }
 
   return (
@@ -211,17 +211,7 @@ const HistoryForm: NextPage<PageProps> = ({ index, defaultValues }) => {
             </button>
           </div>
         </form>
-        <div>
-          <div>
-            <Link href="/history-form/1">Form[1]</Link>
-          </div>
-          <div>
-            <Link href="/history-form/2">Form[2]</Link>
-          </div>
-          <div>
-            <Link href="/history-form/3">Form[3]</Link>
-          </div>
-        </div>
+        <Links />
       </main>
     </div>
   )
