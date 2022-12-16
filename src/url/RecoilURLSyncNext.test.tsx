@@ -7,7 +7,13 @@ import {
   waitFor,
 } from '@testing-library/react'
 import mockRouter from 'next-router-mock'
-import { JSXElementConstructor, ReactElement, ReactNode } from 'react'
+import {
+  JSXElementConstructor,
+  ReactElement,
+  ReactNode,
+  use,
+  useCallback,
+} from 'react'
 import { act } from 'react-dom/test-utils'
 import { atom, RecoilRoot, useRecoilState } from 'recoil'
 import { syncEffect } from 'recoil-sync'
@@ -18,11 +24,13 @@ jest.mock('next/router', () => require('next-router-mock'))
 
 const App: React.FC<{ children: ReactNode }> = ({ children }) => {
   //Demo of custom serialization
-  const serialize: Serialize = (x) =>
-    typeof x === 'string' ? x : JSON.stringify(x)
+  const serialize: Serialize = useCallback(
+    (x) => (typeof x === 'string' ? x : JSON.stringify(x)),
+    []
+  )
 
   //Demo of custom deserialization
-  const deserialize: Deserialize = (x) => x
+  const deserialize: Deserialize = useCallback((x) => x, [])
 
   return (
     <RecoilRoot>
