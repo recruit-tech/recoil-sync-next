@@ -7,6 +7,5 @@
     "source.fixAll.eslint": true
   },
   "typescript.tsdk": "./node_modules/typescript/lib",
-  "typescript.preferences.importModuleSpecifier": "non-relative",
-  "deepscan.enable": true
+  "typescript.preferences.importModuleSpecifier": "non-relative"
 }
