@@ -128,6 +128,60 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 ```
 
+### \<RecoilURLSyncNext>
+
+A version of [\<RecoilURLSync>](https://recoiljs.org/docs/recoil-sync/api/RecoilURLSync) that works with next/router
+to sync atoms with the browser URL using your own serialize/deserialize algorithms.
+This should be a child element of [\<RecoilRoot>](https://recoiljs.org/docs/api-reference/core/RecoilRoot).
+
+```typescript
+function RecoilURLSyncNext(props: {
+  storeKey?: string | undefined
+  location: LocationOption
+  serialize: (data: unknown) => string
+  deserialize: (str: string) => unknown
+  children: ReactNode
+}): ReactNode
+```
+
+#### Props
+
+- `storeKey`
+  - This prop is used to match up which atoms should sync with this external store.
+    See [Syncing with Multiple Storages](https://recoiljs.org/docs/recoil-sync/sync-effect#syncing-with-multiple-storages) for more info.
+- `location`
+  - This prop specifies what part of the URL to sync.
+    See [URL Location](https://recoiljs.org/docs/recoil-sync/api/RecoilURLSync#url-location) for more info.
+- `serialize`
+  - The callback can provide custom serializations.
+    See [Custom serialization](https://recoiljs.org/docs/recoil-sync/api/RecoilURLSync#custom-serialization) for more info.
+- `deserialize`
+  - The callback can provide custom deserializations.
+    See [Custom serialization](https://recoiljs.org/docs/recoil-sync/api/RecoilURLSync#custom-serialization) for more info.
+- `children`
+  - React elements in your component tree.
+
+#### Example
+
+```tsx
+import { RecoilURLSyncNext } from 'recoil-sync-next'
+import qs from 'qs'
+
+function MyApp({ Component, pageProps }: AppProps) {
+  return (
+    <RecoilRoot>
+      <RecoilURLSyncNext
+        location={{ part: 'queryParams' }}
+        serialize={qs.stringify}
+        deserialize={qs.parse}
+      >
+        <Component {...pageProps} />
+      </RecoilURLSyncNext>
+    </RecoilRoot>
+  )
+}
+```
+
 ## Session Storage Persistence Synced with History
 
 Provides persistence of atoms to session storage synced with the position of the history entry.
