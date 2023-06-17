@@ -1,6 +1,7 @@
 export * from './history/RecoilHistorySyncJSONNext'
 export * from './history/RecoilHistorySyncTransitNext'
 export * from './url/RecoilURLSyncJSONNext'
+export * from './url/RecoilURLSyncNext'
 export * from './url/RecoilURLSyncTransitNext'
 export * from './utils/initializableAtom'
 export * from './utils/initializableAtomFamily'
