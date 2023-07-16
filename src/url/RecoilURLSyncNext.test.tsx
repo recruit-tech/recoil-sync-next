@@ -11,7 +11,6 @@ import {
   JSXElementConstructor,
   ReactElement,
   ReactNode,
-  use,
   useCallback,
 } from 'react'
 import { act } from 'react-dom/test-utils'
