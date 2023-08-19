@@ -4016,10 +4016,10 @@ natural-compare@^1.4.0:
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==
 
-next-router-mock@0.9.8:
-  version "0.9.8"
-  resolved "https://registry.yarnpkg.com/next-router-mock/-/next-router-mock-0.9.8.tgz#83f82bcd57baee46fc8653ea2f6a5c17177b4c8d"
-  integrity sha512-u9yzuLTYuBzarv1wfN2z+aC3iSr5nmvMIRnMXNq4c+Alyf4iXKOTnKG3dW1w6h3JW+qNRhTJV37weMsARALZpw==
+next-router-mock@0.9.9:
+  version "0.9.9"
+  resolved "https://registry.yarnpkg.com/next-router-mock/-/next-router-mock-0.9.9.tgz#03191be49b1ede31d7475596fb0d86766d6a696f"
+  integrity sha512-2o50zr+5pWj0zzcvBEWNHDlmWmlDExPdX5OuXKW2aCxV85XUA6MlELr0n0f0wtXj5dUVZ8qspHj6YwF7KZHrbA==
 
 next@13.4.13:
   version "13.4.13"
