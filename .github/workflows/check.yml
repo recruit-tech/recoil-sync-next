@@ -8,7 +8,7 @@ jobs:
     name: check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: yarn
         run: yarn
       - name: Run eslint for library
