@@ -67,7 +67,7 @@
     "@testing-library/react": "14.0.0",
     "@types/jest": "29.5.4",
     "@types/node": "18.17.11",
-    "@types/react": "18.2.20",
+    "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
     "@types/transit-js": "0.8.0",
     "@typescript-eslint/eslint-plugin": "6.4.0",
