@@ -61,7 +61,7 @@
     "transit-js": "^0.8.874"
   },
   "devDependencies": {
-    "@jest/types": "29.6.1",
+    "@jest/types": "29.6.3",
     "@recoiljs/refine": "0.1.1",
     "@testing-library/jest-dom": "6.0.1",
     "@testing-library/react": "14.0.0",
