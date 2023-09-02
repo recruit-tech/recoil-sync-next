@@ -83,7 +83,7 @@
     "next": "13.4.19",
     "next-router-mock": "0.9.9",
     "npm-run-all": "4.1.5",
-    "prettier": "3.0.2",
+    "prettier": "3.0.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "recoil": "0.7.7",
