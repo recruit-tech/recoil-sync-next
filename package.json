@@ -69,7 +69,7 @@
     "@types/node": "18.17.16",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
-    "@types/transit-js": "0.8.0",
+    "@types/transit-js": "0.8.1",
     "@typescript-eslint/eslint-plugin": "6.6.0",
     "@typescript-eslint/parser": "6.6.0",
     "eslint": "8.49.0",

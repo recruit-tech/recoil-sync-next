@@ -1039,10 +1039,10 @@
   resolved "https://registry.yarnpkg.com/@types/tough-cookie/-/tough-cookie-4.0.2.tgz#6286b4c7228d58ab7866d19716f3696e03a09397"
   integrity sha512-Q5vtl1W5ue16D+nIaW8JWebSSraJVlK+EthKn7e7UcD4KWsaSJ8BqGPXNaPghgtcn/fhvrN17Tv8ksUsQpiplw==
 
-"@types/transit-js@0.8.0":
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/@types/transit-js/-/transit-js-0.8.0.tgz#b2f3ca843f7d9528dd193d16ba08b378bd591c5b"
-  integrity sha512-RqdMsrtA1L7PoJCH7U7AiPbOeNS6zdEQv+rJe91CEw/T1ER5oiDGrdizlEjXA4EDLGDYUqVYdkdW6pwBk0cwsA==
+"@types/transit-js@0.8.1":
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/@types/transit-js/-/transit-js-0.8.1.tgz#a4e759b9b30e013e7c503134ca5e70d93bc83365"
+  integrity sha512-HXlhVTGCsWpMt/Y5YK+w2lUPF7IDFp52eyJADSC6Xa/lT3mb5QplhXjKdGHM48vGmF4beb3BDjHj5k0urgmfJw==
 
 "@types/yargs-parser@*":
   version "21.0.0"
