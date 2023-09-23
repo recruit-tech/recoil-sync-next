@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
           node-version: 16.14.0
@@ -45,6 +45,6 @@ jobs:
             LICENSE
             package.json
             yarn.lock
-            dist/*
+            dist/**/*
             src/
             tsconfig.json
