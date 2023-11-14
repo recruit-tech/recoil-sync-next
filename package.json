@@ -13,7 +13,7 @@
   "main": "dist/cjs/index.js",
   "repository": "https://github.com/recruit-tech/recoil-sync-next.git",
   "license": "MIT",
-  "packageManager": "yarn@1.22.19",
+  "packageManager": "yarn@1.22.20",
   "scripts": {
     "inst": "run-s -c inst:*",
     "inst:lib": "yarn install",
