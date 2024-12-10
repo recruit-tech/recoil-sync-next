@@ -1100,12 +1100,10 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.5.tgz#5f19d2b85a98e9558036f6a3cacc8819420f05cf"
   integrity sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==
 
-"@types/react-dom@18.3.2":
-  version "18.3.2"
-  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-18.3.2.tgz#b58a9520f5f317a00bbda0271502889b71c345f0"
-  integrity sha512-Fqp+rcvem9wEnGr3RY8dYNvSQ8PoLqjZ9HLgaPUOjJJD120uDyOxOjc/39M4Kddp9JQCxpGQbnhVQF0C0ncYVg==
-  dependencies:
-    "@types/react" "^18"
+"@types/react-dom@18.3.3":
+  version "18.3.3"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-18.3.3.tgz#3654138d0da1b0c7916f6ed0dc1cc2b576d47650"
+  integrity sha512-uTYkxTLkYp41nq/ULXyXMtkNT1vu5fXJoqad6uTNCOGat5t9cLgF4vMNLBXsTOXpdOI44XzKPY1M5RRm0bQHuw==
 
 "@types/react-dom@^18.0.0":
   version "18.0.6"
@@ -1123,7 +1121,7 @@
     "@types/scheduler" "*"
     csstype "^3.0.2"
 
-"@types/react@18.3.14", "@types/react@^18":
+"@types/react@18.3.14":
   version "18.3.14"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-18.3.14.tgz#7ce43bbca0e15e1c4f67ad33ea3f83d75aa6756b"
   integrity sha512-NzahNKvjNhVjuPBQ+2G7WlxstQ+47kXZNHlUvFakDViuIEfGY926GqhMueQFZ7woG+sPiQKlF36XfrIUVSUfFg==
