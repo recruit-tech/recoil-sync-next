@@ -82,7 +82,7 @@
     "jest-environment-jsdom": "29.7.0",
     "next": "15.1.0",
     "next-router-mock": "0.9.13",
-    "npm-run-all2": "7.0.1",
+    "npm-run-all2": "7.0.2",
     "prettier": "3.4.2",
     "react": "18.3.1",
     "react-dom": "18.3.1",
