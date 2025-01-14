@@ -76,7 +76,7 @@
     "eslint-config-next": "15.1.4",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-import": "2.31.0",
-    "eslint-plugin-react": "7.37.3",
+    "eslint-plugin-react": "7.37.4",
     "eslint-plugin-react-hooks": "5.1.0",
     "jest": "29.7.0",
     "jest-environment-jsdom": "29.7.0",
