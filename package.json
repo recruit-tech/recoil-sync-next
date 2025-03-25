@@ -90,7 +90,7 @@
     "recoil-sync": "0.2.0",
     "simple-git-hooks": "2.12.1",
     "transit-js": "0.8.874",
-    "ts-jest": "29.2.6",
+    "ts-jest": "29.3.0",
     "ts-node": "10.9.2",
     "typescript": "5.8.2"
   }
