@@ -64,7 +64,7 @@
     "@jest/types": "30.0.5",
     "@recoiljs/refine": "0.1.1",
     "@testing-library/jest-dom": "6.8.0",
-    "@testing-library/react": "15.0.7",
+    "@testing-library/react": "16.3.0",
     "@types/jest": "30.0.0",
     "@types/node": "22.17.2",
     "@types/react": "18.3.24",
